@@ -1,4 +1,4 @@
-# Abandoned but Not Forgotten
+# After Mission
 
 An independent student-built, point-and-click museum exploring human-made equipment left on the Moon and Mars. Project concept for NASA Space Apps Challenge 2026, NIT Raipur.
 
