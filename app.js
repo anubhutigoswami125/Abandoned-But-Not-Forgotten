@@ -233,8 +233,9 @@ $$(".object-tab").forEach(tab => tab.addEventListener("click", () => {
   renderTab(tab.dataset.tab);
 }));
 document.addEventListener("keydown", event => {
+  if (event.key === "Escape" && !tourOverlay.classList.contains("hidden")) { closeTour(); return; }
   if (!scenes.planet.classList.contains("hidden")) {
-    if (event.key === "Escape") { closeArtifact(); if (!tourOverlay.classList.contains("hidden")) closeTour(); }
+    if (event.key === "Escape") closeArtifact();
     if ($("#object-panel").classList.contains("hidden") && event.key === "ArrowLeft") moveSection(-1);
     if ($("#object-panel").classList.contains("hidden") && event.key === "ArrowRight") moveSection(1);
   }
