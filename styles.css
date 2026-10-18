@@ -161,3 +161,77 @@ body{image-rendering:pixelated}
 button:focus-visible,a:focus-visible{outline:3px solid #b5e853;outline-offset:4px}
 @media(max-width:700px){.header-actions{gap:7px}.header-note{max-width:110px}.tour-launch{padding:7px;font-size:8px}.guide-stage{gap:18px}.scientist-portrait{flex:0 0 auto;width:min(47vw,210px)}.portrait-frame{padding:5px}.portrait-caption{font-size:8px}.pixel-spark{font-size:24px}.tour-controls{align-items:stretch}.tour-controls>div{display:flex;gap:7px}.tour-controls .text-button{padding:8px}.tour-controls .action-button{font-size:9px}}
 @media(prefers-reduced-motion:reduce){.starfield,.distant-planet,.intro-orbit,.landing-ship,.landing-dust,.intro-copy,.scientist-portrait,.pixel-spark{animation:none!important}}
+
+
+/* Cozy voxel / slice-of-life direction: sky blue, terracotta, butter yellow and warm wood. */
+:root{
+  --ink:#25384c!important;--paper:#f6e2c5!important;--panel:#f8e8ce!important;
+  --accent:#f0a36b!important;--accent-bright:#ffd36a!important;--line:#7e5543!important;
+}
+html,body{background:#9bd3ed!important;color:#25384c!important}
+body{font-family:ui-monospace,"Courier New",monospace!important}
+.site-header,.site-footer{background:#e9b58c!important;color:#533c35!important;border-color:#7e5543!important}
+.site-header{box-shadow:0 5px 0 #b7785c!important}
+.wordmark,.site-footer a{color:#533c35!important}
+.wordmark-mark{background:#5a87ad!important;color:#fff0d2!important;border:3px solid #25384c!important;box-shadow:4px 4px 0 #7e5543!important}
+.header-note,.scene-coordinate,.eyebrow,.landscape-footer{color:#6c5145!important}
+.status-dot{background:#f0a36b!important;box-shadow:0 0 0 3px #f7d5a9!important}
+.scene{background:linear-gradient(#8fcbea 0%,#c5e8ef 64%,#f4d4a0 100%)!important;color:#25384c!important}
+.scene:before{background:none!important}
+.starfield,.space-sky{background:linear-gradient(#8fcbea 0%,#c5e8ef 70%,#f4d4a0 100%)!important;opacity:1!important}
+.starfield{background-image:radial-gradient(circle at 12% 20%,#fff0c7 0 3px,transparent 4px),radial-gradient(circle at 80% 17%,#fff0c7 0 3px,transparent 4px),radial-gradient(circle at 63% 32%,#fff0c7 0 2px,transparent 3px),linear-gradient(#8fcbea,#c5e8ef 70%,#f4d4a0)!important}
+.distant-planet{background:#e8a5a0!important;border:8px solid #b7785c!important;box-shadow:10px 10px 0 #f4d4a0!important}
+.intro-orbit{border-color:#f4a88d!important;opacity:.55!important}
+.landing-ship .ship-body,.landing-ship .ship-top{background:#f6e2c5!important;border:4px solid #7e5543!important;box-shadow:5px 5px 0 #b7785c!important}
+.ship-window{background:#5a87ad!important;border:3px solid #25384c!important}
+.ship-leg,.ship-foot{background:#b7785c!important}
+.landing-dust{background:#e8a5a0!important}
+.intro-copy h1,.destination-heading h2,.dialogue-panel h2,.planet-topbar h2{color:#25384c!important;text-shadow:3px 3px 0 #fff0c7!important}
+.intro-subtitle,.destination-heading>p:not(.eyebrow),.dialogue-panel>p:not(.eyebrow){color:#5c5148!important}
+.action-button,.tour-launch,.move-arrow,.text-button,.destination-card,.object-panel,.tour-window,.dialogue-panel,.portrait-frame{
+  border:3px solid #7e5543!important;border-radius:0!important;box-shadow:5px 5px 0 #b7785c!important;
+}
+.action-button{background:#f3bb67!important;color:#533c35!important;text-shadow:none!important}
+.action-button:hover,.tour-launch:hover,.text-button:hover,.move-arrow:hover{background:#ffd36a!important;transform:translate(-2px,-2px)!important;box-shadow:7px 7px 0 #b7785c!important}
+.action-button:active,.destination-card:active{transform:translate(3px,3px)!important;box-shadow:2px 2px 0 #b7785c!important}
+.tour-launch,.text-button,.move-arrow{background:#d3eaf1!important;color:#25384c!important}
+.guide-stage{align-items:center!important}
+.dialogue-panel,.object-panel,.tour-window{background:#f8e8ce!important;color:#25384c!important;border-color:#7e5543!important;box-shadow:8px 8px 0 #b7785c!important}
+.dialogue-panel .eyebrow,.object-panel .eyebrow,.tour-content .eyebrow{color:#a65d4d!important}
+.portrait-frame{background:#e9b58c!important}
+.scientist-avatar{image-rendering:pixelated!important}
+.portrait-caption{color:#533c35!important}
+.pixel-spark{color:#e98e78!important}
+.destination-card{background:#d8e9d8!important;color:#25384c!important}
+.moon-card{background:linear-gradient(#d9edf1 0 52%,#e8c8a5 52%)!important}
+.mars-card{background:linear-gradient(#c6e3ee 0 48%,#d98e78 48%)!important}
+.destination-card:hover{filter:saturate(1.08) brightness(1.03)!important;transform:translateY(-4px)!important}
+.destination-name,.door-enter{color:#533c35!important}
+.door-symbol{border:4px solid #7e5543!important;box-shadow:5px 5px 0 #b7785c!important}
+.moon-symbol{background:#f8e8ce!important}
+.mars-symbol{background:#d98e78!important}
+.planet-scene{background:#9bd3ed!important}
+.planet-topbar{background:#e9b58c!important;border:3px solid #7e5543!important;box-shadow:5px 5px 0 #b7785c!important}
+.planet-disc{background:#e9a58f!important;border:8px solid #b7785c!important;box-shadow:inset -16px -12px 0 #d48a79!important}
+.sky-star{background:#fff0c7!important;box-shadow:0 0 0 3px #fff0c7!important}
+.landscape{background:linear-gradient(#9bd3ed 0 22%,#c5e8ef 22% 44%,#e8b58c 44% 100%)!important;border-top:4px solid #7e5543!important}
+.terrain-ridge{background:#d98e78!important;border-top:4px solid #b7785c!important}
+.ridge-back{clip-path:polygon(0 28%,12% 28%,12% 8%,27% 8%,27% 35%,39% 35%,39% 16%,55% 16%,55% 30%,72% 30%,72% 0,88% 0,88% 25%,100% 25%,100% 100%,0 100%)!important;opacity:.8!important}
+.ridge-front{background:#b7785c!important;clip-path:polygon(0 22%,18% 22%,18% 0,34% 0,34% 33%,52% 33%,52% 12%,69% 12%,69% 30%,85% 30%,85% 5%,100% 5%,100% 100%,0 100%)!important}
+.artifact-track{align-items:end!important}
+.artifact,.artifact-object,.artifact-marker{image-rendering:pixelated!important;filter:drop-shadow(5px 5px 0 #7e5543)!important}
+.object-panel h3,.tour-content h2{color:#25384c!important;text-shadow:2px 2px 0 #fff0c7!important}
+.object-tab{background:#e9b58c!important;color:#533c35!important;border:2px solid #7e5543!important;border-radius:0!important}
+.object-tab.active{background:#f3bb67!important;color:#533c35!important}
+.object-content,.source-area{color:#5c5148!important;border-color:#c18b6c!important}
+.source-area a{color:#4b79a0!important}
+.tour-overlay{background:rgba(51,66,78,.48)!important}
+.tour-window-bar{background:#e9b58c!important;color:#533c35!important}
+.tour-window-bar button,.panel-close{background:#f3bb67!important;color:#533c35!important;border:2px solid #7e5543!important;border-radius:0!important}
+.tour-progress{background:#d3eaf1!important;border:2px solid #7e5543!important}
+.tour-progress-fill{background:repeating-linear-gradient(90deg,#f0a36b 0 9px,#ffd36a 9px 12px)!important}
+.guide-tip{background:#f8e8ce!important;border:3px solid #7e5543!important;box-shadow:5px 5px 0 #b7785c!important;color:#25384c!important}
+.guide-mini{background:#5a87ad!important;color:#fff0c7!important;border:2px solid #25384c!important;border-radius:0!important}
+button:focus-visible,a:focus-visible{outline:3px solid #f3bb67!important;outline-offset:4px!important}
+.starfield,.space-sky,.distant-planet,.intro-orbit,.landing-ship,.landing-dust,.planet-disc,.sky-star,.terrain-ridge{pointer-events:none}
+@media(max-width:700px){.landscape{background:linear-gradient(#9bd3ed 0 20%,#c5e8ef 20% 40%,#e8b58c 40% 100%)!important}}
