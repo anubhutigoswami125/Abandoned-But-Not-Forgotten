@@ -319,3 +319,118 @@ button:focus-visible,a:focus-visible{outline:3px solid #f3bb67!important;outline
 .destination-card .destination-name{color:#fff4dc}
 .destination-card .destination-detail{color:#fff0dd}
 .destination-card .door-enter{color:#ffe0ad}
+
+
+/* AFTER MISSION — illustrated space storybook direction */
+:root{
+  --ink:#18243b;--ink-2:#283650;--paper:#f6e6c8;--muted:#d2c7c0;
+  --line:#7c6b78;--rust:#bd705e;--rust-light:#efb28b;--cyan:#a8d8df;
+}
+html{scroll-behavior:smooth;background:#17243a}
+body{background:#17243a;color:#f6e8d4;font-family:Georgia,"Times New Roman",serif}
+.site-header{background:linear-gradient(180deg,rgba(22,31,54,.82),rgba(22,31,54,.08))!important}
+.wordmark{font-family:Georgia,serif;letter-spacing:.1em}
+.wordmark-mark{border-radius:50%;border-color:#edc39d;color:#f6d9a9}
+.scene{isolation:isolate;scroll-margin-top:1rem}
+.scene:not(.intro-scene){background:
+  radial-gradient(ellipse at 76% 16%,rgba(255,221,175,.18),transparent 27%),
+  radial-gradient(ellipse at 18% 72%,rgba(132,157,190,.22),transparent 32%),
+  linear-gradient(155deg,#182843 0%,#35435e 48%,#76586a 100%)!important}
+.scene:not(.intro-scene)::before{
+  content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:.25;
+  background-image:radial-gradient(ellipse at 20% 30%,#f7dfb8 0 1px,transparent 2px),radial-gradient(ellipse at 78% 60%,#c6e7e7 0 1px,transparent 2px),radial-gradient(ellipse at 46% 82%,#f7dfb8 0 1px,transparent 2px);
+  background-size:73px 89px,111px 97px,137px 121px;
+}
+.eyebrow{color:#f1cba5;font-family:Georgia,serif;letter-spacing:.16em}
+.action-button{font-family:Georgia,serif;background:#bc7766!important;border:1px solid #f3d1a5!important;color:#fff0d8!important;border-radius:3px!important;box-shadow:0 5px 0 #593e50!important}
+.action-button:hover{background:#d9957c!important}
+.dialogue-panel,.tour-window,.object-panel{
+  background:linear-gradient(145deg,#f7e8cc,#ead4b9)!important;color:#344158!important;
+  border:1px solid #d4ad91!important;border-radius:3px!important;
+  box-shadow:0 16px 45px rgba(11,17,35,.34),5px 5px 0 rgba(20,28,47,.28)!important;
+}
+.dialogue-panel h2,.tour-content h2,.object-panel h3{font-family:Georgia,serif;color:#344158!important;text-shadow:none!important}
+.dialogue-panel>p:not(.eyebrow),.object-mission,.object-content{color:#5a5360!important}
+.dialogue-panel .eyebrow,.object-panel .eyebrow,.tour-content .eyebrow{color:#a55e58!important}
+.scientist-portrait{filter:drop-shadow(0 15px 18px rgba(9,15,30,.35))}
+.portrait-frame{background:#f3dfc1!important;border:7px solid #f3dfc1!important;box-shadow:0 0 0 1px #bd8e79,7px 8px 0 rgba(16,23,42,.3)!important;border-radius:48% 48% 4px 4px!important;overflow:hidden}
+.scientist-avatar{width:100%;height:100%;object-fit:cover;object-position:center top}
+.portrait-caption{font-family:Georgia,serif;color:#f5d8ad!important;letter-spacing:.12em}
+.destination-scene{background:
+ radial-gradient(ellipse at 50% 4%,rgba(246,212,176,.3),transparent 36%),
+ linear-gradient(180deg,#1c2a45,#4a4a68 68%,#9a6e72)!important}
+.destination-heading h2{font-family:Georgia,serif;font-weight:500;color:#fff0d9;text-shadow:0 3px 22px #0e1830}
+.destination-heading>p:last-child{color:#e3d5d2}
+.destination-card{border:1px solid rgba(255,225,194,.8)!important;border-radius:3px!important;box-shadow:0 15px 35px rgba(9,15,30,.32)!important;min-height:340px}
+.destination-card::before{z-index:0!important;background:linear-gradient(180deg,rgba(17,23,39,.02) 5%,rgba(17,23,39,.06) 35%,rgba(17,23,39,.88) 100%)!important}
+.destination-card .destination-name{font:500 30px Georgia,serif;letter-spacing:.02em}
+.destination-card .destination-detail{font-family:Georgia,serif;font-style:italic;font-size:14px}
+.destination-card .door-enter{font-family:Georgia,serif;letter-spacing:.12em}
+.destination-card:hover,.destination-card:focus-visible{transform:translateY(-7px) scale(1.01)!important;border-color:#f6d7a9!important;box-shadow:0 22px 45px rgba(9,15,30,.42)!important}
+.planet-scene{background:#1b2943!important}
+.planet-topbar{background:linear-gradient(180deg,rgba(19,29,49,.9),rgba(19,29,49,.05))!important;border:0!important;box-shadow:none!important}
+.planet-topbar h2{font-family:Georgia,serif;font-weight:500;letter-spacing:.06em;color:#fff0d8}
+.planet-topbar .eyebrow{color:#f0c59f}
+.text-button{background:rgba(35,46,68,.82)!important;border:1px solid #d0ad96!important;color:#fff0d8!important;border-radius:3px!important}
+.space-sky{background:
+ radial-gradient(ellipse at 72% 16%,rgba(246,205,156,.4),transparent 19%),
+ linear-gradient(180deg,#1b2b49 0%,#394765 42%,#9a7180 100%)!important}
+.planet-disc{filter:saturate(.75);opacity:.92}
+.landscape{background:linear-gradient(180deg,transparent 0 18%,rgba(237,187,157,.08) 18% 45%,#806079 100%)!important;border:0!important}
+.terrain-ridge{border:0!important;filter:saturate(.72)}
+.ridge-back{background:#6d5d78!important;opacity:.78!important}
+.ridge-front{background:#a36e72!important}
+.moon-terrain .ridge-back{background:#6b7189!important}
+.moon-terrain .ridge-front{background:#b1a1a6!important}
+.artifact-marker{filter:drop-shadow(0 7px 7px rgba(16,20,38,.38))!important}
+.artifact-label{background:rgba(31,39,58,.88)!important;border:1px solid #d9b89e!important;color:#fff0d9!important;font-family:Georgia,serif;font-weight:400}
+.move-arrow{background:rgba(28,39,61,.82)!important;border:1px solid #f0cfaa!important;border-radius:50%!important}
+.landscape-footer{background:rgba(24,34,55,.84)!important;color:#f0d6bb!important;font-family:Georgia,serif;letter-spacing:.08em}
+.guide-tip{background:#f6e6c8!important;border:1px solid #c9a18d!important;border-radius:3px!important;box-shadow:0 7px 20px #10172b55!important}
+.guide-tip p{color:#4e5263!important;font-family:Georgia,serif}
+.guide-tip b{color:#8e514f!important}
+.guide-mini{background:#b97567!important;border:1px solid #8b5b60!important}
+.object-panel{background:linear-gradient(140deg,#f8ecd5,#ead7bf)!important;border:1px solid #c7a28b!important}
+.object-panel h3{font-size:clamp(27px,4vw,38px);line-height:1.06}
+.object-tabs{border-color:#c7aa99!important}
+.object-tab{background:transparent!important;color:#6d5a63!important;font-family:Georgia,serif;border-radius:0!important}
+.object-tab.active{background:#e2c0a7!important;color:#513f51!important;border-bottom-color:#ad6a62!important}
+.object-content .data-label,.source-area h4{color:#a35d5c!important}
+.source-area{border-color:#d0b09a!important}
+.source-area a{color:#526d8a!important}
+.record-note{color:#806e70!important;font-family:Georgia,serif}
+.tour-window-bar{background:#e7c7a8!important;color:#4c4554!important}
+.tour-window-bar button,.panel-close{color:#4c4554!important}
+.site-footer{background:#18243b!important;color:#d3c2c0!important;border-top:1px solid #6b5b73}
+.site-footer a{color:#f2d0ad!important}
+
+/* Scroll-driven progress and reveals, with graceful fallback for older browsers. */
+#scroll-progress{position:fixed;top:0;left:0;width:100%;height:3px;z-index:100;pointer-events:none;background:linear-gradient(90deg,#f0c69b,#d98c83,#a9d5db);transform:scaleX(0);transform-origin:left center}
+@supports(animation-timeline:scroll()){
+ #scroll-progress{animation:read-progress linear both;animation-timeline:scroll(root block)}
+}
+@keyframes read-progress{to{transform:scaleX(1)}}
+@keyframes story-arrive{from{opacity:0;transform:translateY(28px) scale(.985);filter:blur(4px)}to{opacity:1;transform:translateY(0) scale(1);filter:blur(0)}}
+@keyframes drift-up{from{transform:translateY(16px)}to{transform:translateY(-16px)}}
+.scene.is-entering .intro-copy,.scene.is-entering .dialogue-panel,.scene.is-entering .scientist-portrait,.scene.is-entering .destination-heading,.scene.is-entering .destination-card,.scene.is-entering .planet-topbar,.scene.is-entering .guide-tip{
+ animation:story-arrive .85s cubic-bezier(.2,.7,.2,1) both;
+}
+.scene.is-entering .scientist-portrait{animation-delay:.08s}
+.scene.is-entering .dialogue-panel{animation-delay:.2s}
+.scene.is-entering .destination-card:nth-child(2){animation-delay:.14s}
+.scene.is-entering .destination-card:nth-child(3){animation-delay:.28s}
+.destination-card,.dialogue-panel,.scientist-portrait{will-change:transform,opacity}
+@supports(animation-timeline:view()){
+ .destination-card{animation:story-arrive linear both;animation-timeline:view();animation-range:entry 0% entry 38%}
+ .artifact-marker{animation:story-arrive linear both;animation-timeline:view();animation-range:entry 0% entry 32%}
+ .dialogue-panel{animation:story-arrive linear both;animation-timeline:view();animation-range:entry 0% entry 35%}
+}
+@media(max-width:700px){
+ .destination-card{min-height:240px}
+ .dialogue-panel{box-shadow:0 10px 25px rgba(11,17,35,.28)!important}
+ .intro-copy{backdrop-filter:blur(4px)}
+}
+@media(prefers-reduced-motion:reduce){
+ #scroll-progress{animation:none!important;transform:none!important;width:0}
+ .scene.is-entering .intro-copy,.scene.is-entering .dialogue-panel,.scene.is-entering .scientist-portrait,.scene.is-entering .destination-heading,.scene.is-entering .destination-card,.scene.is-entering .planet-topbar,.scene.is-entering .guide-tip,.destination-card,.artifact-marker,.dialogue-panel{animation:none!important;will-change:auto}
+}
