@@ -633,3 +633,44 @@ body{background:#080b2a;color:#f8e8ff}
 .landscape-footer{gap:14px}
 @media(max-width:700px){.header-actions{gap:8px}.header-note{display:none}.tour-launch{padding:8px;font-size:9px}.landscape-footer{flex-wrap:wrap;justify-content:space-between}.landscape-controls-note{display:none}.back-exhibits{font-size:9px;padding:7px 9px}}
 @media(prefers-reduced-motion:reduce){.tour-progress-fill{transition:none!important}}
+
+
+/* RETRO-FUTURIST SPACE MAXIMALISM — photographic planets, character cameo, layered archive detail */
+.intro-scene{overflow:hidden!important;background:radial-gradient(ellipse at 72% 38%,#30105a 0%,#150b38 36%,#080719 78%)!important}
+.intro-scene:before{background:radial-gradient(circle at 8% 22%,#ff4fcb55 0 1px,transparent 2px),radial-gradient(circle at 48% 15%,#42f5e955 0 1px,transparent 2px),radial-gradient(circle at 92% 34%,#b7f34a88 0 1px,transparent 2px),radial-gradient(circle at 63% 72%,#ff4fcb66 0 2px,transparent 3px),repeating-linear-gradient(0deg,transparent 0 44px,#9567ff0a 45px 46px),radial-gradient(ellipse at 80% 80%,#ff2daa26,transparent 44%)!important}
+.intro-scene:after{z-index:2!important;pointer-events:none!important}
+.earth-hero-image{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:50%;display:block;filter:saturate(1.18) contrast(1.06);mix-blend-mode:screen}
+.intro-scene>.distant-planet{overflow:visible!important;border-radius:50%!important;background:#0a0a25!important;isolation:isolate;box-shadow:0 0 0 2px #42f5e966,0 0 24px #42f5e966,0 0 75px #9567ff88,0 0 140px #ff2daa33!important}
+.intro-scene>.distant-planet:before{content:"";position:absolute;inset:-8%;z-index:2;border:1px solid #ff4fcb88;border-radius:50%;transform:rotate(-19deg) scaleY(.32);box-shadow:0 0 22px #ff2daa33}
+.intro-scene>.distant-planet:after{content:"";position:absolute;inset:-15%;z-index:2;border:1px dashed #42f5e955;border-radius:50%;transform:rotate(24deg) scaleY(.28)}
+.intro-scene>.distant-planet span{display:none!important}
+.landing-ship{width:min(34vw,360px)!important;height:auto!important;aspect-ratio:1.45!important;right:19%!important;bottom:13%!important;z-index:4!important;display:block!important;background:transparent!important;filter:drop-shadow(0 0 18px #42f5e977) drop-shadow(0 0 35px #ff2daa44)!important}
+.ship-image{display:block;width:100%;height:100%;object-fit:contain;mix-blend-mode:screen;filter:saturate(1.12) contrast(1.08)}
+.landing-ship .ship-top,.landing-ship .ship-window,.landing-ship .ship-body,.landing-ship .ship-leg,.landing-ship .ship-foot,.landing-ship .landing-dust{display:none!important}
+.background-cameo{position:absolute;z-index:1;right:1.5%;bottom:0;width:clamp(115px,16vw,220px);height:min(42vh,380px);object-fit:contain;object-position:bottom;opacity:.20;filter:drop-shadow(0 0 18px #9567ff66) saturate(.72);mask-image:linear-gradient(to bottom,transparent 0%,#000 16%,#000 78%,transparent 100%);pointer-events:none}
+.intro-copy{z-index:5!important}
+.intro-scene .scene-coordinate{z-index:6!important}
+.intro-scene .eyebrow:after{content:"  ✦  TRANSMISSION STABLE";display:inline-block;margin-left:9px;color:#ff4fcb;font-size:9px;letter-spacing:.12em}
+.destination-scene{position:relative;overflow:hidden;background:radial-gradient(ellipse at 50% 0%,#40116d 0%,transparent 42%),radial-gradient(ellipse at 5% 100%,#ff2daa22,transparent 42%),linear-gradient(145deg,#080719,#111033 58%,#1b0c35)!important}
+.destination-scene:before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.35;background:repeating-linear-gradient(0deg,transparent 0 31px,#9567ff12 32px 33px),radial-gradient(circle at 14% 24%,#42f5e9 0 1px,transparent 2px),radial-gradient(circle at 87% 18%,#ff4fcb 0 1px,transparent 2px),radial-gradient(circle at 72% 75%,#b7f34a 0 1px,transparent 2px)}
+.destination-heading,.destination-doors,.destination-scene>.scene-coordinate{position:relative;z-index:1}
+.destination-heading:after{content:"✦  ─────  SELECT YOUR EXPEDITION  ─────  ✦";display:block;margin-top:16px;color:#ff4fcb;font-size:9px;letter-spacing:.2em}
+.destination-doors{gap:clamp(18px,3vw,36px)!important}
+.destination-card{position:relative;isolation:isolate;overflow:hidden;min-height:330px!important;aspect-ratio:.95;background-size:cover!important;background-position:center!important;border:1px solid #9567ff!important;border-radius:5px!important;box-shadow:0 0 0 5px #15102d,0 0 0 6px #6038ff,0 18px 45px #050315!important;text-align:left!important}
+.destination-card:before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,#08071912 0%,#08071933 35%,#080719ed 100%);pointer-events:none}
+.moon-card{background-image:url("https://i.pinimg.com/736x/1b/a1/07/1ba1078295b7d66b13c1325884774b12.jpg")!important}
+.mars-card{background-image:url("https://i.pinimg.com/736x/d0/cf/0e/d0cf0e501d49f21891f67b419c3c7c26.jpg")!important}
+.destination-card:after{content:"ARCHIVE / CLASSIFIED";position:absolute;top:15px;left:15px;padding:6px 8px;border:1px solid #42f5e9aa;background:#080719aa;color:#42f5e9;font:9px monospace;letter-spacing:.12em;box-shadow:0 0 14px #42f5e922}
+.destination-card .door-symbol{position:absolute!important;right:18px!important;top:18px!important;width:44px!important;height:44px!important;opacity:.8;filter:drop-shadow(0 0 12px #ff4fcb)!important;pointer-events:none}
+.destination-card .destination-name,.destination-card .destination-detail,.destination-card .door-enter{position:relative;z-index:2;display:block}
+.destination-card .destination-name{margin-top:auto!important;color:#fff0ff!important;text-shadow:0 0 18px #ff2daa,2px 2px 0 #6038ff!important;font-size:clamp(28px,3vw,42px)!important}
+.destination-card .destination-detail{color:#e4d7ff!important;font-style:normal!important}
+.destination-card .door-enter{display:inline-block!important;margin-top:20px;padding:10px 12px!important;border:1px solid #ff4fcb!important;background:#15102ddd!important;color:#42f5e9!important}
+.destination-card:hover,.destination-card:focus-visible{transform:translateY(-9px) rotate(-.5deg)!important;border-color:#42f5e9!important;box-shadow:0 0 0 5px #15102d,0 0 0 6px #42f5e9,0 0 42px #ff2daa66!important}
+.planet-topbar{z-index:30!important}
+.landscape-footer{position:relative!important;z-index:55!important;display:flex!important;align-items:center!important;flex-wrap:wrap!important}
+#back-from-exhibits{position:relative!important;z-index:70!important;display:inline-flex!important;visibility:visible!important;opacity:1!important;pointer-events:auto!important;cursor:pointer!important;border:1px solid #ff4fcb!important;background:#251044!important;color:#fff0ff!important;box-shadow:0 0 18px #ff2daa33!important}
+#back-from-exhibits:hover,#back-from-exhibits:focus-visible{background:#ff2daa!important;color:#100821!important;box-shadow:0 0 25px #ff2daa88!important}
+#back-to-doors{position:relative;z-index:70;pointer-events:auto}
+@media(max-width:700px){.intro-scene>.distant-planet{width:68vw!important;right:-7%!important;top:37%!important}.landing-ship{width:58vw!important;right:11%!important;bottom:12%!important}.background-cameo{width:26vw;right:-3%;opacity:.14}.destination-card{min-height:270px!important;aspect-ratio:auto}.destination-card .door-symbol{width:34px!important;height:34px!important}}
+@media(prefers-reduced-motion:reduce){.earth-hero-image,.background-cameo{animation:none!important}}
