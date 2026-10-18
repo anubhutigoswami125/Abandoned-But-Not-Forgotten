@@ -612,3 +612,24 @@ body{background:#080b2a;color:#f8e8ff}
 @keyframes scene-cut-in{from{opacity:.25;filter:brightness(1.8);transform:scale(1.015)}to{opacity:1;filter:brightness(1);transform:scale(1)}}
 @media(max-width:700px){.intro-copy{top:16%!important;left:22px!important;width:calc(100% - 44px)!important}.intro-copy h1{font-size:clamp(42px,12vw,68px)!important}.intro-scene>.distant-planet{width:70vw;right:-8%;top:38%}.intro-scene>.landing-ship{right:14%;bottom:10%;transform:scale(.72)}.intro-scene:after{background:linear-gradient(90deg,#080719eF 0%,#080719a8 60%,transparent 100%),linear-gradient(0deg,#080719c4,transparent 42%)}.header-note{max-width:105px}.guide-stage{padding-top:80px}}
 @media(prefers-reduced-motion:reduce){.intro-scene>.starfield,.intro-scene>.intro-orbit,.intro-scene>.distant-planet,.intro-scene>.landing-ship,.intro-copy .action-button{animation:none!important}.scene.is-entering{animation:none!important}}
+
+
+/* Tour invitation and a clear return path from the exhibit landscape */
+.header-actions{display:flex;align-items:center;gap:18px}
+.tour-launch{border:1px solid #9567ff;background:#15102d;color:#42f5e9;padding:9px 12px;font-size:10px;letter-spacing:.12em;cursor:pointer;box-shadow:0 0 18px #6038ff22}
+.tour-launch:hover,.tour-launch:focus-visible{border-color:#ff4fcb;color:#fff0ff;box-shadow:0 0 20px #ff2daa44}
+.tour-overlay{z-index:100!important;display:flex;align-items:center;justify-content:center;padding:22px}
+.tour-overlay.hidden{display:none!important}
+.tour-window{width:min(580px,100%);overflow:hidden}
+.tour-content{padding:clamp(22px,4vw,38px)}
+.tour-content h2{color:#fff0ff!important;font-size:clamp(28px,5vw,43px)!important;line-height:1.08;letter-spacing:-.045em}
+.tour-content>p:not(.eyebrow){color:#d8c9f5;max-width:470px}
+.tour-controls{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-top:22px}
+.tour-controls>div{display:flex;align-items:center;gap:8px}
+.tour-controls button:disabled{cursor:not-allowed}
+.tour-progress{height:5px;border-radius:9px;overflow:hidden;margin-top:24px}
+.tour-progress-fill{height:100%;transition:width .3s ease}
+.back-exhibits{flex-shrink:0;white-space:nowrap}
+.landscape-footer{gap:14px}
+@media(max-width:700px){.header-actions{gap:8px}.header-note{display:none}.tour-launch{padding:8px;font-size:9px}.landscape-footer{flex-wrap:wrap;justify-content:space-between}.landscape-controls-note{display:none}.back-exhibits{font-size:9px;padding:7px 9px}}
+@media(prefers-reduced-motion:reduce){.tour-progress-fill{transition:none!important}}
