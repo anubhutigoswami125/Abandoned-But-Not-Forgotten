@@ -235,6 +235,8 @@ window.addEventListener("scroll", () => {
   }
 }, {passive:true});
 scenes.intro.classList.add("is-entering");
+scenes.intro.classList.add("cutscene-playing");
+window.setTimeout(() => scenes.intro.classList.remove("cutscene-playing"), 4300);
 
 $("#begin-mission").addEventListener("click", beginGuide);
 $("#choose-destination").addEventListener("click", showDestinations);
