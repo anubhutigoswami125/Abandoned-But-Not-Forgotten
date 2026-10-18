@@ -236,7 +236,8 @@ window.addEventListener("scroll", () => {
 }, {passive:true});
 scenes.intro.classList.add("is-entering");
 scenes.intro.classList.add("cutscene-playing");
-window.setTimeout(() => scenes.intro.classList.remove("cutscene-playing"), 4300);\nwindow.setTimeout(() => { if (!tourOverlay.classList.contains("hidden")) return; openTour(); }, 4400);
+window.setTimeout(() => scenes.intro.classList.remove("cutscene-playing"), 4300);
+window.setTimeout(() => { if (!tourOverlay.classList.contains("hidden")) return; openTour(); }, 4400);
 
 $("#begin-mission").addEventListener("click", beginGuide);
 $("#choose-destination").addEventListener("click", showDestinations);
