@@ -288,3 +288,34 @@ button:focus-visible,a:focus-visible{outline:3px solid #f3bb67!important;outline
   .intro-subtitle{font-size:13px!important}
 }
 @media(prefers-reduced-motion:reduce){.intro-copy{animation:none!important}}
+
+
+/* Destination cards use the user's selected landscape artwork. */
+.destination-card{
+  background-size:cover!important;
+  background-position:center!important;
+  background-repeat:no-repeat!important;
+  position:relative;
+  isolation:isolate;
+}
+.destination-card::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-1;
+  background:linear-gradient(180deg,rgba(18,23,31,.04) 8%,rgba(18,23,31,.18) 38%,rgba(12,17,24,.92) 100%);
+  pointer-events:none;
+}
+.moon-card{
+  background-image:url("https://i.pinimg.com/1200x/33/d8/c6/33d8c62704429cc2f45f2feb80646833.jpg")!important;
+}
+.mars-card{
+  background-image:url("https://i.pinimg.com/1200x/f6/23/ed/f623ed4e43311cb9de689b971e5747fe.jpg")!important;
+}
+.destination-card .door-symbol{display:none}
+.destination-card .destination-name,
+.destination-card .destination-detail,
+.destination-card .door-enter{position:relative;z-index:1;text-shadow:0 2px 8px rgba(0,0,0,.8)}
+.destination-card .destination-name{color:#fff4dc}
+.destination-card .destination-detail{color:#fff0dd}
+.destination-card .door-enter{color:#ffe0ad}
