@@ -237,7 +237,7 @@ button:focus-visible,a:focus-visible{outline:3px solid #f3bb67!important;outline
 @media(max-width:700px){.landscape{background:linear-gradient(#9bd3ed 0 20%,#c5e8ef 20% 40%,#e8b58c 40% 100%)!important}}
 
 
-/* Homepage hero: use the user's exact Minecraft-style reference image. */
+/* Legacy homepage image removed; cinematic CSS scene is rendered below. */
 .site-header{
   position:absolute!important;top:0;left:0;right:0;z-index:20!important;
   background:linear-gradient(180deg,rgba(31,39,36,.82),rgba(31,39,36,.04))!important;
@@ -245,7 +245,7 @@ button:focus-visible,a:focus-visible{outline:3px solid #f3bb67!important;outline
 }
 .intro-scene{
   min-height:100svh!important;height:100svh!important;
-  background-image:url("https://i.pinimg.com/736x/91/51/08/915108c18f8731d1051f38e4863f3bf5.jpg")!important;
+  background-image:none!important;
   background-size:cover!important;background-position:center center!important;background-repeat:no-repeat!important;
   background-color:#7d9c91!important;isolation:isolate!important;
 }
