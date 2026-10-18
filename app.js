@@ -234,11 +234,49 @@ $$(".object-tab").forEach(tab => tab.addEventListener("click", () => {
 }));
 document.addEventListener("keydown", event => {
   if (!scenes.planet.classList.contains("hidden")) {
-    if (event.key === "Escape") closeArtifact();
+    if (event.key === "Escape") { closeArtifact(); if (!tourOverlay.classList.contains("hidden")) closeTour(); }
     if ($("#object-panel").classList.contains("hidden") && event.key === "ArrowLeft") moveSection(-1);
     if ($("#object-panel").classList.contains("hidden") && event.key === "ArrowRight") moveSection(1);
   }
 });
-window.addEventListener("resize", () => {
+
+const tour = [
+  {label:"WELCOME / 01", title:"A museum beyond Earth.", description:"This is a point-and-click archive about human-made equipment left on the Moon and Mars. Start with the cinematic arrival scene, then enter the museum."},
+  {label:"THE GUIDE / 02", title:"Meet Dr. Nova.", description:"Your field scientist introduces the archive and helps you choose a destination. The portrait is the guide character; the site is an independent student project, not an official NASA site."},
+  {label:"CHOOSE A WORLD / 03", title:"Pick your landing site.", description:"Open the Moon or Mars archive. Each world has its own landscape and a small set of clickable exhibits."},
+  {label:"INVESTIGATE / 04", title:"Click. Explore. Discover.", description:"Select an object in the landscape or use the arrow buttons / keyboard arrows to move between exhibits. Each record has History, Timeline, Purpose, Final Status and primary-source links."}
+];
+let tourIndex = 0;
+const tourOverlay = $("#site-tour");
+function renderTour() {
+  const step = tour[tourIndex];
+  $("#tour-step-label").textContent = step.label;
+  $("#tour-title").textContent = step.title;
+  $("#tour-description").textContent = step.description;
+  $("#tour-progress-fill").style.width = ((tourIndex + 1) / tour.length * 100) + "%";
+  $("#tour-back").disabled = tourIndex === 0;
+  $("#tour-back").style.opacity = tourIndex === 0 ? ".45" : "1";
+  $("#tour-next").textContent = tourIndex === tour.length - 1 ? "FINISH ✓" : "NEXT →";
+}
+function openTour() {
+  tourIndex = 0;
+  renderTour();
+  tourOverlay.classList.remove("hidden");
+  $("#tour-next").focus();
+}
+function closeTour() {
+  tourOverlay.classList.add("hidden");
+  $("#open-tour").focus();
+}
+$("#open-tour").addEventListener("click", openTour);
+$("#close-tour").addEventListener("click", closeTour);
+$("#tour-skip").addEventListener("click", closeTour);
+$("#tour-back").addEventListener("click", () => { if (tourIndex > 0) tourIndex--; renderTour(); });
+$("#tour-next").addEventListener("click", () => {
+  if (tourIndex < tour.length - 1) { tourIndex++; renderTour(); }
+  else closeTour();
+});
+tourOverlay.addEventListener("click", event => { if (event.target === tourOverlay) closeTour(); });
+\nwindow.addEventListener("resize", () => {
   if (!scenes.planet.classList.contains("hidden")) updateLandscapePosition();
 });
