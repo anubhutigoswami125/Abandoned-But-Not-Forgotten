@@ -93,9 +93,16 @@ const artifacts = {
 };
 
 function showScene(name) {
-  Object.entries(scenes).forEach(([key, element]) => element.classList.toggle("hidden", key !== name));
+  Object.entries(scenes).forEach(([key, element]) => {
+    element.classList.toggle("hidden", key !== name);
+    if (key === name) {
+      element.classList.remove("is-entering");
+      void element.offsetWidth;
+      element.classList.add("is-entering");
+    }
+  });
   closeArtifact(false);
-  window.scrollTo({top: 0, behavior: "auto"});
+  window.scrollTo({top: 0, behavior: "smooth"});
 }
 function beginGuide() {
   showScene("guide");
@@ -217,6 +224,18 @@ function closeArtifact(restoreFocus = true) {
   panel.classList.add("hidden");
   if (restoreFocus && lastFocusedElement && typeof lastFocusedElement.focus === "function") lastFocusedElement.focus();
 }
+const scrollProgress = document.createElement("div");
+scrollProgress.id = "scroll-progress";
+scrollProgress.setAttribute("aria-hidden", "true");
+document.body.appendChild(scrollProgress);
+window.addEventListener("scroll", () => {
+  if (!CSS.supports("animation-timeline: scroll()")) {
+    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+    scrollProgress.style.transform = "scaleX(" + (maxScroll > 0 ? window.scrollY / maxScroll : 0) + ")";
+  }
+}, {passive:true});
+scenes.intro.classList.add("is-entering");
+
 $("#begin-mission").addEventListener("click", beginGuide);
 $("#choose-destination").addEventListener("click", showDestinations);
 $$(".destination-card").forEach(button => button.addEventListener("click", () => enterWorld(button.dataset.world)));
