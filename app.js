@@ -243,7 +243,7 @@ document.addEventListener("keydown", event => {
 
 const tour = [
   {label:"WELCOME / 01", title:"A museum beyond Earth.", description:"This is a point-and-click archive about human-made equipment left on the Moon and Mars. Start with the cinematic arrival scene, then enter the museum."},
-  {label:"THE GUIDE / 02", title:"Meet Dr. Nova.", description:"Your field scientist introduces the archive and helps you choose a destination. The portrait is the guide character; the site is an independent student project, not an official NASA site."},
+  {label:"THE GUIDE / 02", title:"Meet Dr. Anubhuti.", description:"Your field scientist introduces the archive and helps you choose a destination. The portrait is the guide character; the site is an independent student project, not an official NASA site."},
   {label:"CHOOSE A WORLD / 03", title:"Pick your landing site.", description:"Open the Moon or Mars archive. Each world has its own landscape and a small set of clickable exhibits."},
   {label:"INVESTIGATE / 04", title:"Click. Explore. Discover.", description:"Select an object in the landscape or use the arrow buttons / keyboard arrows to move between exhibits. Each record has History, Timeline, Purpose, Final Status and primary-source links."}
 ];
