@@ -236,12 +236,12 @@ window.addEventListener("scroll", () => {
 }, {passive:true});
 scenes.intro.classList.add("is-entering");
 scenes.intro.classList.add("cutscene-playing");
-window.setTimeout(() => scenes.intro.classList.remove("cutscene-playing"), 4300);
+window.setTimeout(() => scenes.intro.classList.remove("cutscene-playing"), 4300);\nwindow.setTimeout(() => { if (!tourOverlay.classList.contains("hidden")) return; openTour(); }, 4400);
 
 $("#begin-mission").addEventListener("click", beginGuide);
 $("#choose-destination").addEventListener("click", showDestinations);
 $$(".destination-card").forEach(button => button.addEventListener("click", () => enterWorld(button.dataset.world)));
-$("#back-to-doors").addEventListener("click", showDestinations);
+$("#back-to-doors").addEventListener("click", showDestinations);\n$("#back-from-exhibits").addEventListener("click", showDestinations);
 $("#move-left").addEventListener("click", () => moveSection(-1));
 $("#move-right").addEventListener("click", () => moveSection(1));
 $("#close-object").addEventListener("click", () => closeArtifact());
@@ -263,7 +263,7 @@ document.addEventListener("keydown", event => {
 });
 
 const tour = [
-  {label:"WELCOME / 01", title:"A museum beyond Earth.", description:"This is a point-and-click archive about human-made equipment left on the Moon and Mars. Start with the cinematic arrival scene, then enter the museum."},
+  {label:"MISSION BRIEFING / 01", title:"Would you like a tour?", description:"Welcome to After Mission. Take this quick guided tour to learn how to explore the museum, choose the Moon or Mars, and investigate the equipment left behind — or skip it and explore freely."},
   {label:"THE GUIDE / 02", title:"Meet Dr. Anubhuti.", description:"Your field scientist introduces the archive and helps you choose a destination. The portrait is the guide character; the site is an independent student project, not an official NASA site."},
   {label:"CHOOSE A WORLD / 03", title:"Pick your landing site.", description:"Open the Moon or Mars archive. Each world has its own landscape and a small set of clickable exhibits."},
   {label:"INVESTIGATE / 04", title:"Click. Explore. Discover.", description:"Select an object in the landscape or use the arrow buttons / keyboard arrows to move between exhibits. Each record has History, Timeline, Purpose, Final Status and primary-source links."}
