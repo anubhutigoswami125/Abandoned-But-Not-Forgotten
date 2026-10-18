@@ -241,7 +241,8 @@ window.setTimeout(() => scenes.intro.classList.remove("cutscene-playing"), 4300)
 $("#begin-mission").addEventListener("click", beginGuide);
 $("#choose-destination").addEventListener("click", showDestinations);
 $$(".destination-card").forEach(button => button.addEventListener("click", () => enterWorld(button.dataset.world)));
-$("#back-to-doors").addEventListener("click", showDestinations);\n$("#back-from-exhibits").addEventListener("click", showDestinations);
+$("#back-to-doors").addEventListener("click", event => { event.preventDefault(); event.stopPropagation(); showDestinations(); });
+$("#back-from-exhibits").addEventListener("click", event => { event.preventDefault(); event.stopPropagation(); showDestinations(); });
 $("#move-left").addEventListener("click", () => moveSection(-1));
 $("#move-right").addEventListener("click", () => moveSection(1));
 $("#close-object").addEventListener("click", () => closeArtifact());
