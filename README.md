@@ -4,7 +4,7 @@ An independent student-built, point-and-click museum exploring human-made equipm
 
 **This is not an official NASA website and is not endorsed by NASA.**
 
-## Current prototype
+## Visual direction\n\nAfter Mission presents a dreamlike, illustrated space storybook: atmospheric Moon and Mars landscapes, a field-scientist guide, scroll-responsive transitions, and artifact records styled like travel-journal pages. The interface is poetic; scientific claims remain tied to cited primary sources.\n\n## Current prototype
 
 - Illustrated spacecraft-arrival opening scene.
 - Scientist guide and destination selection.
