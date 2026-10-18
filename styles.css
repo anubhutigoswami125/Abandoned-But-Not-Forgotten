@@ -535,3 +535,80 @@ button,input,textarea,select{font-family:Arial,Helvetica,sans-serif!important}
 @media(prefers-reduced-motion:reduce){
  .pixel-spark,.artifact-drawing,.destination-card,.move-arrow,.action-button{animation:none!important;transition:none!important}
 }
+
+
+/* AFTER MISSION — playable cyber-fairy space cutscene */
+:root{--ink:#080b2a;--ink-2:#15102d;--paper:#f8e8ff;--muted:#c6b4e8;--line:#6038ff;--rust:#c52b8d;--rust-light:#ff4fcB;--cyan:#42f5e9}
+body{background:#080b2a;color:#f8e8ff}
+.site-header{position:absolute!important;top:0;left:0;right:0;z-index:20!important;background:linear-gradient(180deg,rgba(8,11,42,.94),rgba(8,11,42,0))!important;border:0!important}
+.wordmark{color:#fff0ff!important;text-shadow:0 0 18px #ff2daa55}
+.wordmark-mark{border-color:#ff4fcb!important;color:#ff4fcb!important;box-shadow:0 0 18px #ff2daa44}
+.header-note{color:#c6b4e8!important}
+.intro-scene{height:100svh!important;min-height:680px!important;isolation:isolate;background:radial-gradient(ellipse at 76% 42%,#32105e 0%,#15103e 28%,#080b2a 67%,#080719 100%)!important}
+.intro-scene:before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:radial-gradient(ellipse at 75% 84%,#ff2daa24,transparent 40%),linear-gradient(125deg,transparent 35%,#6038ff14 60%,transparent 80%)}
+.intro-scene:after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,#080719eF 0%,#080719b8 37%,transparent 78%),linear-gradient(0deg,#080719b8,transparent 38%);mask-image:none!important}
+.intro-scene>.starfield{display:block!important;z-index:0;opacity:.85;background-image:radial-gradient(circle at 12% 19%,#fff 0 1px,transparent 1.8px),radial-gradient(circle at 38% 12%,#42f5e9 0 1px,transparent 2px),radial-gradient(circle at 77% 17%,#ff4fcb 0 1px,transparent 2px),radial-gradient(circle at 89% 43%,#fff 0 1px,transparent 2px),radial-gradient(circle at 60% 31%,#b7f34a 0 1px,transparent 2px),radial-gradient(circle at 22% 65%,#9567ff 0 1px,transparent 2px),radial-gradient(circle at 48% 78%,#fff 0 1px,transparent 2px),radial-gradient(circle at 92% 83%,#ff4fcb 0 1px,transparent 2px);animation:star-drift 28s linear infinite}
+.intro-scene>.intro-orbit{display:block!important;z-index:0;border-color:#9567ff55!important;box-shadow:0 0 25px #6038ff14;animation:orbit-breathe 9s ease-in-out infinite alternate}
+.intro-scene>.orbit-two{animation-direction:alternate-reverse;border-color:#42f5e933!important}
+.intro-scene>.distant-planet{display:block!important;z-index:0;right:7%;top:13%;width:min(43vw,530px);opacity:.94;background:radial-gradient(circle at 29% 25%,#ff8cde 0%,#9567ff 24%,#4a23a0 48%,#171044 72%,#080b2a 100%)!important;box-shadow:inset -45px -30px 90px #080719,0 0 70px #6038ff66,0 0 130px #ff2daa25!important;animation:planet-float 8s ease-in-out infinite alternate}
+.intro-scene>.distant-planet:after{content:"";position:absolute;inset:-9% -15%;border:2px solid #42f5e955;border-radius:50%;transform:rotate(-21deg) scaleY(.25);box-shadow:0 0 16px #42f5e922}
+.intro-scene>.distant-planet span{border-color:#ffb5ec77!important;transform:rotate(-22deg) scaleY(.33)!important}
+.intro-scene>.landing-ship{display:block!important;z-index:2;right:22%;bottom:18%;filter:drop-shadow(0 0 18px #42f5e944);transform-origin:50% 20%;animation:lander-arrival 4.2s cubic-bezier(.16,.74,.26,1) both}
+.ship-top{background:linear-gradient(135deg,#f6d7ff,#8d78bc)!important;border-color:#21134b!important}
+.ship-body{background:linear-gradient(135deg,#f7c8ef,#9b77d9 60%,#583b9c)!important;border-color:#21134b!important;box-shadow:inset 0 0 18px #fff6ff66}
+.ship-window{background:#42f5e9!important;border-color:#f6c9ff!important;box-shadow:0 0 14px #42f5e9aa}
+.ship-leg{background:#9f89dd!important;border-color:#21134b!important}
+.ship-foot{background:#42f5e9!important;border-color:#21134b!important}
+.landing-dust{border-color:#ff4fcb99!important;box-shadow:0 0 18px #ff2daa33}
+.intro-copy{top:24%!important;bottom:auto!important;left:clamp(24px,8vw,120px)!important;z-index:3;width:min(520px,calc(100% - 48px))!important;max-width:520px!important;padding:0!important;background:transparent!important;border:0!important;box-shadow:none!important;backdrop-filter:none!important;animation:copy-arrives 1s .55s both!important}
+.intro-copy .eyebrow{color:#42f5e9!important;text-shadow:0 0 14px #42f5e955}
+.intro-copy h1{color:#fff0ff!important;text-shadow:0 0 28px #ff2daa44!important;font-size:clamp(44px,7vw,86px)!important;letter-spacing:-.065em!important}
+.intro-subtitle{color:#dfd3ff!important}
+.intro-copy .action-button{background:#ff2daa!important;color:#19082c!important;border:1px solid #ff9fe1!important;border-radius:3px!important;box-shadow:0 0 25px #ff2daa55,4px 4px 0 #6038ff!important;text-transform:uppercase;letter-spacing:.1em;animation:cta-pulse 2.2s 3.5s infinite}
+.intro-copy .action-button:hover{background:#b7f34a!important;border-color:#b7f34a!important;transform:translateY(-3px)!important;box-shadow:0 0 30px #b7f34a55,4px 4px 0 #6038ff!important}
+.intro-scene .scene-coordinate{display:block!important;z-index:3;color:#42f5e9!important;bottom:24px;font-size:9px}
+.intro-scene .scene-coordinate:before{content:"✦  "}
+.pixel-spark{color:#ff4fcb!important;text-shadow:0 0 12px #ff2daa}
+.guide-scene,.destination-scene{background:radial-gradient(ellipse at 70% 20%,#26104e,#080b2a 70%)!important}
+.dialogue-panel,.destination-card{background:rgba(21,16,45,.88)!important;border-color:#6038ff!important;box-shadow:6px 6px 0 #ff2daa2b,0 0 30px #6038ff12!important;backdrop-filter:blur(12px)}
+.dialogue-panel h2,.destination-heading h2{color:#fff0ff}
+.eyebrow,.door-enter,.source-area h4,.object-content .data-label{color:#42f5e9!important}
+.action-button{background:#ff2daa!important;border-color:#ff9fe1!important;color:#19082c!important}
+.destination-card:hover,.destination-card:focus-visible{border-color:#ff4fcb!important;box-shadow:0 0 28px #ff2daa30!important}
+.moon-card{background:linear-gradient(145deg,#22164b,#11102e)!important}
+.mars-card{background:linear-gradient(145deg,#47164c,#16102d)!important}
+.moon-symbol{box-shadow:0 0 28px #9567ff66,inset -14px -10px 22px #242e40}
+.mars-symbol{box-shadow:0 0 30px #ff2daa44,inset -14px -10px 22px #24171d}
+.planet-scene{background:#080b2a!important}
+.planet-topbar{background:linear-gradient(180deg,#080719ef,#08071900)!important}
+.text-button{background:#15102d!important;border-color:#6038ff!important;color:#f8e8ff!important}
+.text-button:hover{border-color:#ff4fcb!important}
+.landscape-footer{background:#080719e8!important;color:#42f5e9!important}
+.artifact-label{background:#15102de8!important;border-color:#ff4fcB88!important;color:#fff0ff!important;box-shadow:0 0 18px #6038ff22!important}
+.artifact-drawing{filter:drop-shadow(0 0 12px #ff2daa55)!important}
+.move-arrow{background:#15102ddf!important;border-color:#9567ff!important;color:#42f5e9!important}
+.move-arrow:hover,.move-arrow:focus-visible{background:#ff2daa!important;color:#15102d!important}
+.object-panel{background:linear-gradient(145deg,#1b1240,#0d0a25)!important;border-color:#9567ff!important;box-shadow:0 0 70px #6038ff44!important;border-radius:12px!important}
+.object-panel h3,.tour-content h2{color:#fff0ff!important;text-shadow:0 0 18px #ff2daa22!important}
+.object-tab{background:transparent!important;color:#c6b4e8!important;border-color:transparent!important;border-radius:5px 5px 0 0!important}
+.object-tab.active{background:#ff2daa22!important;color:#fff0ff!important;border-bottom-color:#ff4fcb!important}
+.object-content,.source-area{color:#e0d6f5!important;border-color:#6038ff88!important}
+.source-area a,.site-footer a{color:#42f5e9!important}
+.tour-overlay{background:#080719cc!important;backdrop-filter:blur(10px)}
+.tour-window{background:#15102d!important;border:1px solid #9567ff!important;box-shadow:0 0 55px #6038ff55!important;border-radius:10px!important}
+.tour-window-bar{background:#24124d!important;color:#42f5e9!important;border-radius:9px 9px 0 0!important}
+.tour-window-bar button,.panel-close{color:#ff4fcb!important}
+.tour-progress{background:#080b2a!important;border-color:#6038ff!important}
+.tour-progress-fill{background:linear-gradient(90deg,#ff2daa,#9567ff,#42f5e9)!important}
+.site-footer{background:#080719!important;color:#a99acb!important;border-top:1px solid #6038ff55!important}
+#scroll-progress{background:linear-gradient(90deg,#ff2daa,#9567ff,#42f5e9)!important}
+.scene.is-entering{animation:scene-cut-in .75s cubic-bezier(.2,.7,.2,1) both}
+@keyframes star-drift{from{transform:translate3d(0,0,0)}to{transform:translate3d(-28px,18px,0)}}
+@keyframes orbit-breathe{from{transform:rotate(-22deg) scale(1)}to{transform:rotate(-15deg) scale(1.04)}}
+@keyframes planet-float{from{transform:translate3d(0,0,0)}to{transform:translate3d(-12px,12px,0)}}
+@keyframes lander-arrival{0%{transform:translate3d(90px,-190px,0) rotate(13deg) scale(.68);opacity:0}48%{opacity:1}76%{transform:translate3d(-8px,12px,0) rotate(-2deg) scale(.94)}88%{transform:translate3d(0,-8px,0) rotate(1deg) scale(.91)}100%{transform:translate3d(0,0,0) rotate(0) scale(.9);opacity:1}}
+@keyframes copy-arrives{0%{opacity:0;transform:translate3d(-30px,15px,0)}100%{opacity:1;transform:translate3d(0,0,0)}}
+@keyframes cta-pulse{0%,100%{box-shadow:0 0 20px #ff2daa44,4px 4px 0 #6038ff}50%{box-shadow:0 0 34px #ff2daaaa,4px 4px 0 #6038ff}}
+@keyframes scene-cut-in{from{opacity:.25;filter:brightness(1.8);transform:scale(1.015)}to{opacity:1;filter:brightness(1);transform:scale(1)}}
+@media(max-width:700px){.intro-copy{top:16%!important;left:22px!important;width:calc(100% - 44px)!important}.intro-copy h1{font-size:clamp(42px,12vw,68px)!important}.intro-scene>.distant-planet{width:70vw;right:-8%;top:38%}.intro-scene>.landing-ship{right:14%;bottom:10%;transform:scale(.72)}.intro-scene:after{background:linear-gradient(90deg,#080719eF 0%,#080719a8 60%,transparent 100%),linear-gradient(0deg,#080719c4,transparent 42%)}.header-note{max-width:105px}.guide-stage{padding-top:80px}}
+@media(prefers-reduced-motion:reduce){.intro-scene>.starfield,.intro-scene>.intro-orbit,.intro-scene>.distant-planet,.intro-scene>.landing-ship,.intro-copy .action-button{animation:none!important}.scene.is-entering{animation:none!important}}
