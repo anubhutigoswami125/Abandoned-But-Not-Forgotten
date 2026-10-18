@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080d1a">
+  <meta name="description" content="An interactive student-built museum exploring human-made equipment left on the Moon and Mars.">
+  <title>Abandoned but Not Forgotten | A Space Heritage Museum</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#game">Skip to game</a>
+  <header class="site-header">
+    <a class="wordmark" href="./" aria-label="Abandoned but Not Forgotten home"><span class="wordmark-mark" aria-hidden="true">A/N</span><span>ABANDONED<br><b>BUT NOT FORGOTTEN</b></span></a>
+    <div class="header-note">A SPACE HERITAGE MUSEUM <span class="status-dot"></span> FIELD ARCHIVE 001</div>
+  </header>
+
+  <main id="game">
+    <section id="intro-scene" class="scene intro-scene" aria-labelledby="intro-title">
+      <div class="starfield" aria-hidden="true"></div>
+      <div class="intro-orbit orbit-one" aria-hidden="true"></div><div class="intro-orbit orbit-two" aria-hidden="true"></div>
+      <div class="distant-planet" aria-hidden="true"><span></span></div>
+      <div class="landing-ship" aria-hidden="true">
+        <div class="ship-top"></div><div class="ship-window"></div><div class="ship-body"></div>
+        <div class="ship-leg leg-left"></div><div class="ship-leg leg-right"></div><div class="ship-foot foot-left"></div><div class="ship-foot foot-right"></div>
+        <div class="landing-dust dust-left"></div><div class="landing-dust dust-right"></div>
+      </div>
+      <div class="intro-copy">
+        <p class="eyebrow">MISSION LOG // ENTRY 001</p>
+        <h1 id="intro-title">Some things<br>never come home.</h1>
+        <p class="intro-subtitle">A point-and-click museum of human-made equipment left beyond Earth.</p>
+        <button id="begin-mission" class="action-button" type="button">Enter the museum <span aria-hidden="true">→</span></button>
+      </div>
+      <div class="scene-coordinate">DEEP SPACE / ARRIVAL CONFIRMED</div>
+    </section>
+
+    <section id="guide-scene" class="scene guide-scene hidden" aria-labelledby="guide-heading">
+      <div class="starfield" aria-hidden="true"></div>
+      <div class="guide-stage">
+        <div class="scientist" aria-label="Illustrated museum scientist" role="img">
+          <div class="scientist-hair"></div><div class="scientist-head"><div class="scientist-eye eye-left"></div><div class="scientist-eye eye-right"></div><div class="scientist-smile"></div></div>
+          <div class="scientist-neck"></div><div class="scientist-coat"></div><div class="scientist-shirt"></div><div class="scientist-arm arm-left"></div><div class="scientist-arm arm-right"></div><div class="scientist-badge">M</div>
+        </div>
+        <div class="dialogue-panel">
+          <p class="eyebrow">MUSEUM GUIDE // DR. NOVA</p>
+          <h2 id="guide-heading">Welcome, traveller.</h2>
+          <p id="dialogue-text" aria-live="polite">Hello, traveller. Welcome to the Museum of Lost but Not Forgotten NASA Space Equipment. Every object here has a story. Some completed their mission. Some stopped working. Each left a mark on the history of exploration.</p>
+          <button id="choose-destination" class="action-button" type="button">Choose your destination <span aria-hidden="true">→</span></button>
+        </div>
+      </div>
+      <p class="scene-coordinate">ARCHIVE ACCESS GRANTED / SELECT A WORLD</p>
+    </section>
+
+    <section id="destination-scene" class="scene destination-scene hidden" aria-labelledby="destination-heading">
+      <div class="starfield" aria-hidden="true"></div>
+      <div class="destination-heading">
+        <p class="eyebrow">TWO WORLDS. MANY STORIES.</p>
+        <h2 id="destination-heading">Where shall we begin?</h2>
+        <p>Choose a destination to explore documented traces of human exploration.</p>
+      </div>
+      <div class="destination-doors">
+        <button class="destination-card moon-card" data-world="moon" type="button">
+          <span class="door-symbol moon-symbol" aria-hidden="true"></span>
+          <span class="destination-name">THE MOON</span><span class="destination-detail">Quiet ground. Human footprints.</span><span class="door-enter">OPEN ARCHIVE ↗</span>
+        </button>
+        <button class="destination-card mars-card" data-world="mars" type="button">
+          <span class="door-symbol mars-symbol" aria-hidden="true"></span>
+          <span class="destination-name">MARS</span><span class="destination-detail">Robotic explorers. Red horizons.</span><span class="door-enter">OPEN ARCHIVE ↗</span>
+        </button>
+      </div>
+      <p class="scene-coordinate">SELECT A DOOR TO ENTER THE LANDSCAPE</p>
+    </section>
+
+    <section id="planet-scene" class="scene planet-scene hidden" aria-labelledby="planet-title">
+      <div class="space-sky"><div class="planet-disc" aria-hidden="true"></div><div class="sky-star star-a"></div><div class="sky-star star-b"></div><div class="sky-star star-c"></div><div class="sky-star star-d"></div></div>
+      <div class="planet-topbar">
+        <button id="back-to-doors" class="text-button" type="button">← DESTINATIONS</button>
+        <div><p class="eyebrow">FIELD ARCHIVE</p><h2 id="planet-title">MARS</h2></div>
+        <p id="world-progress" class="world-progress">SECTOR 01 / 03</p>
+      </div>
+      <div id="landscape" class="landscape mars-terrain">
+        <div class="terrain-ridge ridge-back" aria-hidden="true"></div><div class="terrain-ridge ridge-front" aria-hidden="true"></div>
+        <div id="artifact-track" class="artifact-track" aria-label="Clickable artifacts"></div>
+      </div>
+      <button id="move-left" class="move-arrow move-left" type="button" aria-label="Explore previous section">←</button>
+      <button id="move-right" class="move-arrow move-right" type="button" aria-label="Explore next section">→</button>
+      <div class="landscape-footer"><span id="landscape-hint">SELECT AN OBJECT TO INVESTIGATE</span><span>USE ARROWS OR KEYBOARD ← →</span></div>
+      <div id="object-panel" class="object-panel hidden" role="dialog" aria-modal="true" aria-labelledby="object-name">
+        <button id="close-object" class="panel-close" type="button" aria-label="Close artifact details">×</button>
+        <p class="eyebrow" id="object-kicker">ARTIFACT RECORD</p>
+        <h3 id="object-name">Artifact name</h3>
+        <p id="object-mission" class="object-mission"></p>
+        <div class="object-tabs" role="tablist" aria-label="Artifact information">
+          <button class="object-tab active" data-tab="history" role="tab" aria-selected="true" type="button">History</button>
+          <button class="object-tab" data-tab="timeline" role="tab" aria-selected="false" type="button">Timeline</button>
+          <button class="object-tab" data-tab="purpose" role="tab" aria-selected="false" type="button">Purpose</button>
+          <button class="object-tab" data-tab="status" role="tab" aria-selected="false" type="button">Final status</button>
+        </div>
+        <div id="object-content" class="object-content" role="tabpanel" tabindex="0"></div>
+        <div class="source-area"><h4>PRIMARY SOURCES</h4><ul id="object-sources"></ul></div>
+        <p class="record-note">This is an evolving student research archive. Entries are added only when their claims and sources have been checked.</p>
+      </div>
+      <div id="guide-tip" class="guide-tip"><span class="guide-mini" aria-hidden="true">N</span><p><b>Dr. Nova</b><br><span id="guide-tip-text">Click an artifact to open its research record.</span></p></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>INDEPENDENT STUDENT PROJECT · NOT AFFILIATED WITH OR ENDORSED BY NASA</span>
+    <nav aria-label="Legal"><a href="privacy.html">Privacy policy</a><a href="terms.html">Terms and conditions</a><a href="https://www.nasa.gov/" target="_blank" rel="noopener noreferrer">NASA.gov ↗</a></nav>
+  </footer>
+  <noscript><p class="noscript">This interactive museum requires JavaScript to run. Enable JavaScript to explore the archive.</p></noscript>
+</body>
+</html>
