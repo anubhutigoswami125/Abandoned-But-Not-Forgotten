@@ -278,6 +278,7 @@ $("#tour-next").addEventListener("click", () => {
   else closeTour();
 });
 tourOverlay.addEventListener("click", event => { if (event.target === tourOverlay) closeTour(); });
-\nwindow.addEventListener("resize", () => {
+
+window.addEventListener("resize", () => {
   if (!scenes.planet.classList.contains("hidden")) updateLandscapePosition();
 });
