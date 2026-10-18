@@ -235,3 +235,56 @@ body{font-family:ui-monospace,"Courier New",monospace!important}
 button:focus-visible,a:focus-visible{outline:3px solid #f3bb67!important;outline-offset:4px!important}
 .starfield,.space-sky,.distant-planet,.intro-orbit,.landing-ship,.landing-dust,.planet-disc,.sky-star,.terrain-ridge{pointer-events:none}
 @media(max-width:700px){.landscape{background:linear-gradient(#9bd3ed 0 20%,#c5e8ef 20% 40%,#e8b58c 40% 100%)!important}}
+
+
+/* Homepage hero: use the user's exact Minecraft-style reference image. */
+.site-header{
+  position:absolute!important;top:0;left:0;right:0;z-index:20!important;
+  background:linear-gradient(180deg,rgba(31,39,36,.82),rgba(31,39,36,.04))!important;
+  border-bottom:0!important;box-shadow:none!important;
+}
+.intro-scene{
+  min-height:100svh!important;height:100svh!important;
+  background-image:url("https://i.pinimg.com/736x/91/51/08/915108c18f8731d1051f38e4863f3bf5.jpg")!important;
+  background-size:cover!important;background-position:center center!important;background-repeat:no-repeat!important;
+  background-color:#7d9c91!important;isolation:isolate!important;
+}
+.intro-scene:after{
+  content:""!important;position:absolute!important;inset:0!important;height:auto!important;z-index:0!important;
+  background:linear-gradient(90deg,rgba(25,32,30,.76) 0%,rgba(25,32,30,.48) 38%,rgba(25,32,30,.05) 78%),
+             linear-gradient(0deg,rgba(25,32,30,.45),transparent 42%)!important;
+  mask-image:none!important;pointer-events:none!important;
+}
+.intro-scene>.starfield,.intro-scene>.intro-orbit,.intro-scene>.distant-planet,.intro-scene>.landing-ship{display:none!important}
+.intro-copy{
+  top:auto!important;bottom:clamp(70px,12vh,130px)!important;
+  left:clamp(22px,7vw,100px)!important;right:auto!important;
+  width:min(560px,calc(100% - 44px))!important;max-width:560px!important;
+  padding:clamp(22px,3vw,38px)!important;
+  background:rgba(36,43,38,.78)!important;border:3px solid #d6b78d!important;
+  box-shadow:8px 8px 0 rgba(51,42,33,.68)!important;
+  backdrop-filter:blur(3px)!important;animation:scene-enter .8s ease both!important;
+}
+.intro-copy .eyebrow{color:#f1d39b!important}
+.intro-copy h1{
+  color:#fff1d7!important;text-shadow:3px 3px 0 #755846,6px 6px 0 rgba(25,32,30,.75)!important;
+  font-size:clamp(38px,5.5vw,72px)!important;letter-spacing:-.045em!important;
+}
+.intro-subtitle{color:#f5e7d1!important;max-width:390px!important}
+.intro-copy .action-button{
+  background:#d7a66c!important;color:#2e3029!important;border:3px solid #4c4435!important;
+  box-shadow:4px 4px 0 #2c332d!important;border-radius:0!important;
+  min-height:52px!important;font-size:12px!important;text-transform:uppercase!important;
+}
+.intro-copy .action-button:hover{background:#f1d39b!important;transform:translate(-2px,-2px)!important;box-shadow:6px 6px 0 #2c332d!important}
+.intro-copy .action-button:active{transform:translate(3px,3px)!important;box-shadow:1px 1px 0 #2c332d!important}
+.intro-scene .scene-coordinate{display:none!important}
+.site-footer{background:#e9b58c!important}
+@media(max-width:700px){
+  .site-header{height:66px!important;padding-inline:16px!important}
+  .intro-scene{background-position:center center!important;min-height:100svh!important}
+  .intro-copy{left:16px!important;right:16px!important;bottom:7vh!important;width:auto!important;padding:20px!important}
+  .intro-copy h1{font-size:clamp(37px,10vw,58px)!important}
+  .intro-subtitle{font-size:13px!important}
+}
+@media(prefers-reduced-motion:reduce){.intro-copy{animation:none!important}}
