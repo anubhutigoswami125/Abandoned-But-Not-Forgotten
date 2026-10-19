@@ -50,8 +50,7 @@ const artifacts = {
         {label:"NASA: Apollo 15 mission overview", url:"https://www.nasa.gov/mission/apollo-15/"},
         {label:"NASA: Apollo Lunar Roving Vehicle", url:"https://www.nasa.gov/centers-and-facilities/marshall/apollo-lunar-roving-vehicle/"}
       ]
-    }
-
+    },
     {id:"apollo-ALSEP",name:"Apollo scientific experiment packages (ALSEP)",kind:"instrument",mission:"Apollo 12, 14, 15, 16 and 17 · 1969–1972",history:"Astronauts deployed instrument suites that measured moonquakes, heat flow, magnetic fields and particles. Cables and stations turned landing sites into remote field laboratories long after crews departed.",launch:"Deployed during Apollo surface EVAs between 1969 and 1972; most arrays operated until 1977.",purpose:"Measure seismic activity, heat flow, magnetic fields and the Moon's interaction with the solar wind.",status:"Stations and cables remain at their deployment sites. The scientific records survive although the instruments no longer transmit.",sources:[{label:"NASA: Apollo Lunar Surface Journal",url:"https://www.nasa.gov/history/alsj/"},{label:"NASA: Human artifacts on the Moon",url:"https://www.nasa.gov/wp-content/uploads/static/history/humanartifacts.html"}]},
     {id:"apollo-flags",name:"Apollo flags and flag assemblies",kind:"instrument",mission:"Apollo 11, 12, 14, 15, 16 and 17 · 1969–1972",history:"Each Apollo landing crew planted a flag. Nylon fabric was not designed for the lunar environment; orbital images suggest some flags may have fallen over, while Apollo 11's flag was likely affected by ascent-engine exhaust.",launch:"First planted by Apollo 11 on 20 July 1969; five further Apollo crews planted flags at their landing sites.",purpose:"A symbol of human arrival and a visual marker for the landing missions.",status:"Assemblies were left on the Moon. Their exact present condition is not confirmed for every site.",sources:[{label:"NASA: Apollo lunar surface journal",url:"https://www.nasa.gov/history/alsj/"},{label:"NASA: Human artifacts on the Moon",url:"https://www.nasa.gov/wp-content/uploads/static/history/humanartifacts.html"}]},
     {id:"apollo-tools",name:"Geology tools, scoops, rakes and drive tubes",kind:"instrument",mission:"Apollo surface missions · 1969–1972",history:"Hammers, tongs, scoops, rakes and core tubes helped crews collect lunar rocks and soil. Some tools and containers were left behind to save mass for the return journey; the samples brought home are still studied.",launch:"Used during multiple Apollo EVAs; individual tool histories vary by mission.",purpose:"Collect samples that reveal the Moon's volcanic, impact and early solar-system history.",status:"Some tools remain on the surface; returned samples are curated on Earth. Not every tool was discarded.",sources:[{label:"NASA: Spacewalking tools",url:"https://www.nasa.gov/suits-and-rovers/spacewalking-tools/"},{label:"NASA Astromaterials 3D: Apollo lunar collection",url:"https://ares.jsc.nasa.gov/astromaterials3d/apollo-lunar.htm"}]},
@@ -324,3 +323,29 @@ tourOverlay.addEventListener("click", event => { if (event.target === tourOverla
 window.addEventListener("resize", () => {
   if (!scenes.planet.classList.contains("hidden")) updateLandscapePosition();
 });
+
+
+// Motion enhancement layer: subtle pointer parallax and animated artifact reveals.
+// All navigation remains native button handlers above; no animation is required for functionality.
+(function initMotionEnhancements(){
+  const reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (!reduced) {
+    document.querySelectorAll(".destination-card,.dialogue-panel,.intro-copy").forEach((el) => {
+      el.addEventListener("pointermove", (event) => {
+        if (event.pointerType === "touch") return;
+        const rect = el.getBoundingClientRect();
+        const x = (event.clientX - rect.left) / rect.width - .5;
+        const y = (event.clientY - rect.top) / rect.height - .5;
+        el.style.setProperty("--pointer-x", (x * 7).toFixed(2) + "px");
+        el.style.setProperty("--pointer-y", (y * 7).toFixed(2) + "px");
+      });
+      el.addEventListener("pointerleave", () => {
+        el.style.setProperty("--pointer-x", "0px");
+        el.style.setProperty("--pointer-y", "0px");
+      });
+    });
+    const style = document.createElement("style");
+    style.textContent = ".destination-card,.dialogue-panel,.intro-copy{translate:var(--pointer-x,0) var(--pointer-y,0);}";
+    document.head.appendChild(style);
+  }
+})();
