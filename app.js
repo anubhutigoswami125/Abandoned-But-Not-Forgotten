@@ -7,12 +7,19 @@ const scenes = {
   intro: $("#intro-scene"),
   guide: $("#guide-scene"),
   destinations: $("#destination-scene"),
-  planet: $("#planet-scene")
+  planet: $("#planet-scene"),
+  archive: $("#archive-scene"),
+  reflection: $("#reflection-scene")
 };
 let currentWorld = "mars";
 let sectionIndex = 0;
 let selectedArtifact = null;
 let lastFocusedElement = null;
+let lastSceneBeforeArchive = "destinations";
+let archiveFilter = "all";
+let archiveQuery = "";
+const discoveredIds = new Set();
+try { JSON.parse(localStorage.getItem("aftermission-discovered") || "[]").forEach(id => discoveredIds.add(id)); } catch (_) {}
 
 const artifacts = {
   moon: [
@@ -109,6 +116,39 @@ const artifacts = {
     }
   ]
 };
+
+function openArchive() {
+  const active = Object.entries(scenes).find(([key, el]) => key !== "archive" && !el.classList.contains("hidden"));
+  if (active) lastSceneBeforeArchive = active[0];
+  closeArtifact(false);
+  renderArchive();
+  showScene("archive");
+  $("#archive-search").focus({preventScroll:true});
+}
+function renderArchive() {
+  const grid = $("#archive-grid");
+  if (!grid) return;
+  grid.replaceChildren();
+  const all = [...artifacts.moon.map(a => ({...a, world:"moon"})), ...artifacts.mars.map(a => ({...a, world:"mars"}))];
+  const filtered = all.filter(a => {
+    const haystack = [a.name,a.mission,a.kind,a.history,a.purpose].join(" ").toLowerCase();
+    const worldMatch = archiveFilter === "all" || archiveFilter === a.world || (archiveFilter === "discovered" && discoveredIds.has(a.id));
+    return worldMatch && haystack.includes(archiveQuery.toLowerCase());
+  });
+  $("#archive-count").textContent = filtered.length + " / " + all.length + " RESEARCH RECORDS";
+  $("#archive-empty").classList.toggle("hidden", filtered.length > 0);
+  filtered.forEach(a => {
+    const card = document.createElement("article"); card.className = "archive-record";
+    const meta = document.createElement("p"); meta.className = "archive-record-meta"; meta.textContent = a.world.toUpperCase() + " / " + a.kind.toUpperCase() + (discoveredIds.has(a.id) ? " / VISITED" : "");
+    const title = document.createElement("h3"); title.textContent = a.name;
+    const mission = document.createElement("p"); mission.className = "archive-record-mission"; mission.textContent = a.mission;
+    const summary = document.createElement("p"); summary.className = "archive-record-summary"; summary.textContent = a.history;
+    const button = document.createElement("button"); button.className = "archive-record-open"; button.type = "button"; button.textContent = "OPEN RECORD ↗";
+    button.addEventListener("click", () => { currentWorld = a.world; enterWorld(a.world); openArtifact(a, button); });
+    card.append(meta,title,mission,summary,button); grid.appendChild(card);
+  });
+}
+function returnFromArchive() { showScene(scenes[lastSceneBeforeArchive] ? lastSceneBeforeArchive : "destinations"); }
 
 function showScene(name) {
   Object.entries(scenes).forEach(([key, element]) => {
@@ -258,6 +298,20 @@ window.setTimeout(() => scenes.intro.classList.remove("cutscene-playing"), 4300)
 window.setTimeout(() => { if (!tourOverlay.classList.contains("hidden")) return; openTour(); }, 4400);
 
 $("#begin-mission").addEventListener("click", beginGuide);
+$("#open-archive").addEventListener("click", openArchive);
+$("#planet-open-archive").addEventListener("click", openArchive);
+$("#archive-back").addEventListener("click", returnFromArchive);
+$("#archive-to-worlds").addEventListener("click", showDestinations);
+$("#open-reflection").addEventListener("click", () => showScene("reflection"));
+$("#reflection-explore").addEventListener("click", showDestinations);
+$("#reflection-archive").addEventListener("click", openArchive);
+$("#archive-search").addEventListener("input", event => { archiveQuery = event.target.value.trim(); renderArchive(); });
+$(".archive-filter").forEach(button => button.addEventListener("click", () => {
+  archiveFilter = button.dataset.filter;
+  $(".archive-filter").forEach(item => { const active = item === button; item.classList.toggle("active", active); item.setAttribute("aria-pressed", String(active)); });
+  renderArchive();
+}));
+
 $("#choose-destination").addEventListener("click", showDestinations);
 $$(".destination-card").forEach(button => button.addEventListener("click", () => enterWorld(button.dataset.world)));
 $("#back-to-doors").addEventListener("click", event => { event.preventDefault(); event.stopPropagation(); showDestinations(); });
@@ -286,7 +340,8 @@ const tour = [
   {label:"MISSION BRIEFING / 01", title:"Would you like a tour?", description:"Welcome to After Mission. Take this quick guided tour to learn how to explore the museum, choose the Moon or Mars, and investigate the equipment left behind — or skip it and explore freely."},
   {label:"THE GUIDE / 02", title:"Meet Dr. Anubhuti.", description:"Your field scientist introduces the archive and helps you choose a destination. The portrait is the guide character; the site is an independent student project, not an official NASA site."},
   {label:"CHOOSE A WORLD / 03", title:"Pick your landing site.", description:"Open the Moon or Mars archive. Each world has its own landscape and a small set of clickable exhibits."},
-  {label:"INVESTIGATE / 04", title:"Click. Explore. Discover.", description:"Select an object in the landscape or use the arrow buttons / keyboard arrows to move between exhibits. Each record has History, Timeline, Purpose, Final Status and primary-source links."}
+  {label:"INVESTIGATE / 04", title:"Click. Explore. Discover.", description:"Select an object in the landscape or use the arrow buttons / keyboard arrows to move between exhibits. Each record has History, Timeline, Purpose, Final Status and primary-source links."},
+  {label:"THE ARCHIVE / 05", title:"Return to what you found.", description:"Search all records, filter by world, and use My Discoveries to revisit objects you have opened. Your discovery list is stored only in this browser."}
 ];
 let tourIndex = 0;
 const tourOverlay = $("#site-tour");
