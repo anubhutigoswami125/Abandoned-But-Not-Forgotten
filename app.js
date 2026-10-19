@@ -256,6 +256,8 @@ function openArtifact(artifact, trigger) {
   });
   $("#object-panel").classList.remove("hidden");
   $("#close-object").focus();
+  discoveredIds.add(artifact.id);
+  try { localStorage.setItem("aftermission-discovered", JSON.stringify([...discoveredIds])); } catch (_) {}
   $("#guide-tip-text").textContent = "You're investigating " + artifact.name + ". Check the source links as you read.";
 }
 function renderTab(tabName) {
