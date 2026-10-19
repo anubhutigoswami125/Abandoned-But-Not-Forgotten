@@ -268,7 +268,7 @@ function drawingFor(kind) {
   return '<span class="artifact-drawing instrument-drawing" aria-hidden="true"><span class="instrument-top"></span></span>';
 }
 function updateLandscapePosition() {
-  const markers = $(".artifact-marker", $("#artifact-track"));
+  const markers = $$(".artifact-marker", $("#artifact-track"));
   const maxIndex = Math.max(0, markers.length - 1);
   sectionIndex = Math.max(0, Math.min(sectionIndex, maxIndex));
   const marker = markers[sectionIndex];
@@ -278,7 +278,7 @@ function updateLandscapePosition() {
   $("#move-left").style.opacity = sectionIndex === 0 ? ".45" : "1";
   $("#move-right").style.opacity = sectionIndex === maxIndex ? ".45" : "1";
   if (marker) {
-    $(".artifact-marker", $("#artifact-track")).forEach((item, index) => item.classList.toggle("is-current-exhibit", index === sectionIndex));
+    $$(".artifact-marker", $("#artifact-track")).forEach((item, index) => item.classList.toggle("is-current-exhibit", index === sectionIndex));
   }
 }
 function moveSection(delta) {
@@ -325,7 +325,7 @@ function openArtifact(artifact, trigger) {
     facts.appendChild(box);
   });
   content.append(stage, facts);
-  $(".object-tab").forEach(tab => {
+  $$(".object-tab").forEach(tab => {
     tab.classList.remove("active");
     tab.setAttribute("aria-selected", "false");
   });
