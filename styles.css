@@ -777,3 +777,6 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
 @media(max-width:850px){.archive-refine{grid-template-columns:repeat(2,minmax(0,1fr))}.landscape-credit{max-width:100%}}
 @media(max-width:560px){.archive-refine{grid-template-columns:1fr}.archive-refine select{min-height:44px}.landscape-credit{font-size:8px}.landscape-footer{padding-bottom:18px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}#landscape::before{transition:none}.artifact-track{transition:none}*{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+
+.schematic-note{color:#b8c3d8;font-size:8px;letter-spacing:.08em;line-height:1.4}
+@media(max-width:700px){.schematic-note{max-width:140px}}
