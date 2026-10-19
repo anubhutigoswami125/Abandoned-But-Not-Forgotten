@@ -297,9 +297,10 @@ window.addEventListener("scroll", () => {
 scenes.intro.classList.add("is-entering");
 scenes.intro.classList.add("cutscene-playing");
 window.setTimeout(() => scenes.intro.classList.remove("cutscene-playing"), 4300);
-window.setTimeout(() => { if (!tourOverlay.classList.contains("hidden")) return; openTour(); }, 4400);
+// The site tour is opt-in; never interrupt the arrival scene with an automatic modal.
 
 $("#begin-mission").addEventListener("click", beginGuide);
+$("#skip-arrival").addEventListener("click", beginGuide);
 $("#open-archive").addEventListener("click", openArchive);
 $("#planet-open-archive").addEventListener("click", openArchive);
 $("#archive-back").addEventListener("click", returnFromArchive);
