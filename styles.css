@@ -969,3 +969,37 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
  #planet-scene .artifact-marker.scan-found .artifact-drawing,#planet-scene .artifact-marker.scan-priority .artifact-label{animation:none}
  #planet-scene #landscape.is-scanning:after{animation:none}
 }
+
+
+/* Adventure camera: the planetary surface is a horizontal scene, not a long webpage. */
+#planet-scene #landscape.landscape{
+  height:calc(100svh - 250px)!important;min-height:520px!important;max-height:760px;
+  overflow-x:auto!important;overflow-y:hidden!important;scrollbar-width:none;overscroll-behavior-x:contain;
+  scroll-behavior:smooth;touch-action:pan-x pan-y
+}
+#planet-scene #landscape.landscape::-webkit-scrollbar{display:none}
+#planet-scene #landscape.landscape::before{
+  width:var(--world-width,100%)!important;height:100%!important;inset:0 auto 0 0!important;
+  background-size:100% 100%!important;background-repeat:no-repeat!important;background-position:left center!important;
+  opacity:.42!important
+}
+#planet-scene #landscape.landscape::after{
+  width:var(--world-width,100%)!important;right:auto!important;bottom:0!important;pointer-events:none
+}
+#planet-scene #artifact-track.artifact-track{
+  left:0!important;right:auto!important;top:0!important;bottom:0!important;
+  width:var(--world-width,100%)!important;height:100%!important;min-width:100%!important;
+  overflow:visible!important;pointer-events:none
+}
+#planet-scene .artifact-marker{
+  left:var(--artifact-x)!important;top:var(--artifact-y)!important;
+  width:clamp(116px,15vw,190px)!important;height:clamp(145px,19vw,210px)!important;
+  transform:translateX(-50%) scale(var(--artifact-scale,1))!important
+}
+#planet-scene .artifact-marker .artifact-label{max-width:clamp(110px,14vw,180px)}
+#planet-scene .landscape-footer{z-index:34}
+@media(max-width:760px){
+  #planet-scene #landscape.landscape{height:calc(100svh - 255px)!important;min-height:430px!important;max-height:620px}
+  #planet-scene .artifact-marker{width:clamp(104px,30vw,150px)!important;height:145px!important}
+}
+@media(prefers-reduced-motion:reduce){#planet-scene #landscape.landscape{scroll-behavior:auto}}
