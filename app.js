@@ -229,13 +229,22 @@ function enterWorld(world) {
 function renderArtifacts() {
   const list = artifacts[currentWorld];
   const track = $("#artifact-track");
-  track.innerHTML = "";
+  track.replaceChildren();
+  track.style.height = Math.max(1, Math.ceil(list.length / 4)) * 440 + 160 + "px";
   list.forEach((artifact, index) => {
     const button = document.createElement("button");
+    const col = index % 4;
+    const row = Math.floor(index / 4);
+    const xPositions = [12, 37, 63, 86];
+    const yOffsets = [205, 260, 220, 275];
     button.type = "button";
     button.className = "artifact-marker";
+    button.dataset.artifactId = artifact.id;
+    button.style.setProperty("--artifact-x", xPositions[col] + "%");
+    button.style.setProperty("--artifact-y", (row * 440 + yOffsets[col]) + "px");
+    button.style.setProperty("--artifact-scale", [0.86, 1.08, 0.94, 1.16][(index + col) % 4]);
     button.setAttribute("aria-label", "Investigate " + artifact.name);
-    button.innerHTML = drawingFor(artifact.kind) + '<span class="artifact-label"></span>';
+    button.innerHTML = drawingFor(artifact.kind) + '<span class="artifact-label"></span><span class="artifact-ground-shadow" aria-hidden="true"></span>';
     $(".artifact-label", button).textContent = artifact.name;
     button.addEventListener("click", () => openArtifact(artifact, button));
     track.appendChild(button);
@@ -248,46 +257,72 @@ function drawingFor(kind) {
   return '<span class="artifact-drawing instrument-drawing" aria-hidden="true"><span class="instrument-top"></span></span>';
 }
 function updateLandscapePosition() {
-  const track = $("#artifact-track");
-  const markers = $$(".artifact-marker", track);
+  const markers = $(".artifact-marker", $("#artifact-track"));
   const maxIndex = Math.max(0, markers.length - 1);
   sectionIndex = Math.max(0, Math.min(sectionIndex, maxIndex));
   const marker = markers[sectionIndex];
-  if (marker) {
-    const trackWidth = track.parentElement.clientWidth;
-    const markerCenter = marker.offsetLeft + marker.offsetWidth / 2;
-    const maxTranslate = Math.max(0, track.scrollWidth - trackWidth);
-    const translate = Math.max(0, Math.min(maxTranslate, markerCenter - trackWidth / 2));
-    track.style.transform = 'translateX(' + (-translate) + 'px)';
-  }
   $("#world-progress").textContent = "EXHIBIT " + String(sectionIndex + 1).padStart(2, "0") + " / " + String(markers.length).padStart(2, "0");
   $("#move-left").disabled = sectionIndex === 0;
   $("#move-right").disabled = sectionIndex === maxIndex;
   $("#move-left").style.opacity = sectionIndex === 0 ? ".45" : "1";
   $("#move-right").style.opacity = sectionIndex === maxIndex ? ".45" : "1";
+  if (marker) {
+    $(".artifact-marker", $("#artifact-track")).forEach((item, index) => item.classList.toggle("is-current-exhibit", index === sectionIndex));
+  }
 }
 function moveSection(delta) {
   const max = artifacts[currentWorld].length - 1;
   sectionIndex = Math.max(0, Math.min(max, sectionIndex + delta));
   updateLandscapePosition();
   const item = artifacts[currentWorld][sectionIndex];
+  const marker = $(".artifact-marker", $("#artifact-track"))[sectionIndex];
   $("#guide-tip-text").textContent = "Nearby exhibit: " + item.name + ". Select it to read the research record.";
+  if (marker) marker.scrollIntoView({behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "center", inline: "nearest"});
 }
 function openArtifact(artifact, trigger) {
   selectedArtifact = artifact;
   lastFocusedElement = trigger || document.activeElement;
-  $("#object-kicker").textContent = (currentWorld === "moon" ? "LUNAR" : "MARTIAN") + " ARTIFACT RECORD";
+  currentWorld = artifact.world || currentWorld;
+  $("#object-kicker").textContent = (currentWorld === "moon" ? "LUNAR" : "MARTIAN") + " FIELD DOSSIER / " + artifact.kind.toUpperCase();
   $("#object-name").textContent = artifact.name;
   $("#object-mission").textContent = artifact.mission;
-  $$(".object-tab").forEach((tab) => {
-    const active = tab.dataset.tab === "history";
-    tab.classList.toggle("active", active);
-    tab.setAttribute("aria-selected", String(active));
+  const panel = $("#object-panel");
+  panel.dataset.kind = artifact.kind;
+  const content = $("#object-content");
+  content.replaceChildren();
+  const stage = document.createElement("div");
+  stage.className = "dossier-object-stage";
+  stage.setAttribute("aria-label", "Stylised rotating illustration of " + artifact.name + "; not a historical photograph");
+  stage.innerHTML = '<div class="dossier-orbit" aria-hidden="true"></div><div class="dossier-object-model">' + drawingFor(artifact.kind) + '</div><span class="dossier-model-caption">SCHEMATIC OBJECT MODEL · NOT TO SCALE</span>';
+  const facts = document.createElement("div");
+  facts.className = "dossier-facts";
+  const records = [
+    ["MISSION HISTORY", artifact.history],
+    ["MISSION TIMELINE", artifact.launch],
+    ["ORIGINAL PURPOSE", artifact.purpose],
+    ["DOCUMENTED OUTCOME", artifact.status]
+  ];
+  records.forEach(([label, value], index) => {
+    const box = document.createElement("section");
+    box.className = "dossier-fact neon-box";
+    box.style.setProperty("--fact-index", index);
+    const heading = document.createElement("h4");
+    heading.textContent = label;
+    const paragraph = document.createElement("p");
+    paragraph.textContent = value;
+    box.append(heading, paragraph);
+    facts.appendChild(box);
   });
-  renderTab("history");
+  content.append(stage, facts);
+  $(".object-tab").forEach(tab => {
+    tab.classList.remove("active");
+    tab.setAttribute("aria-selected", "false");
+  });
+  const tabs = $(".object-tabs");
+  if (tabs) tabs.classList.add("hidden");
   const sources = $("#object-sources");
-  sources.innerHTML = "";
-  artifact.sources.forEach((source) => {
+  sources.replaceChildren();
+  artifact.sources.forEach(source => {
     const li = document.createElement("li");
     const link = document.createElement("a");
     link.href = source.url;
@@ -297,7 +332,7 @@ function openArtifact(artifact, trigger) {
     li.appendChild(link);
     sources.appendChild(li);
   });
-  $("#object-panel").classList.remove("hidden");
+  panel.classList.remove("hidden");
   $("#close-object").focus();
   discoveredIds.add(artifact.id);
   try { localStorage.setItem("aftermission-discovered", JSON.stringify([...discoveredIds])); } catch (_) {}
