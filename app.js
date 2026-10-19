@@ -639,7 +639,7 @@ window.addEventListener("resize", () => {
   landscape.addEventListener("pointermove",event=>{
     if(event.pointerType==="touch") return;
     const rect=landscape.getBoundingClientRect();
-    reticle.style.left=(event.clientX-rect.left)+"px";
+    reticle.style.left=(event.clientX-rect.left+landscape.scrollLeft)+"px";
     reticle.style.top=(event.clientY-rect.top)+"px";
     reticle.classList.add("is-active");
   });
