@@ -23,6 +23,36 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Check JavaScript syntax
+        run: node --check app.js
+      - name: Verify local HTML assets
+        run: |
+          python - <<'PY'
+          from html.parser import HTMLParser
+          from pathlib import Path
+          from urllib.parse import urlparse
+          class AssetChecker(HTMLParser):
+              def __init__(self):
+                  super().__init__()
+                  self.paths = []
+              def handle_starttag(self, tag, attrs):
+                  attrs = dict(attrs)
+                  for key in ("src", "href"):
+                      value = attrs.get(key, "")
+                      if not value or value.startswith(("#", "http://", "https://", "mailto:", "tel:", "data:", "javascript:")):
+                          continue
+                      path = urlparse(value).path
+                      if not path or path == "/":
+                          continue
+                      self.paths.append(path.lstrip("./"))
+          checker = AssetChecker()
+          for page in Path(".").glob("*.html"):
+              checker.feed(page.read_text(encoding="utf-8"))
+          missing = sorted({path for path in checker.paths if not Path(path).exists()})
+          if missing:
+              raise SystemExit("Missing local assets: " + ", ".join(missing))
+          print("Local HTML assets exist.")
+          PY
       - name: Configure Pages
         uses: actions/configure-pages@v5
         with:
