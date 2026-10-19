@@ -674,3 +674,19 @@ body{background:#080b2a;color:#f8e8ff}
 #back-to-doors{position:relative;z-index:70;pointer-events:auto}
 @media(max-width:700px){.intro-scene>.distant-planet{width:68vw!important;right:-7%!important;top:37%!important}.landing-ship{width:58vw!important;right:11%!important;bottom:12%!important}.background-cameo{width:26vw;right:-3%;opacity:.14}.destination-card{min-height:270px!important;aspect-ratio:auto}.destination-card .door-symbol{width:34px!important;height:34px!important}}
 @media(prefers-reduced-motion:reduce){.earth-hero-image,.background-cameo{animation:none!important}}
+
+/* A photographic, editorial space archive: less synthetic illustration, more field museum. */
+.space-sky{background-image:linear-gradient(180deg,#0807192e,#08071900 50%,#08071988),url("https://images-assets.nasa.gov/image/PIA18033/PIA18033~large.jpg")!important;background-size:cover!important;background-position:center 42%!important}
+.landscape.mars-terrain{background-image:linear-gradient(180deg,#180c2b22,#180c2b88),url("https://images-assets.nasa.gov/image/PIA24333/PIA24333~large.jpg")!important;background-size:cover!important;background-position:center!important}
+.landscape.moon-terrain{background-image:linear-gradient(180deg,#0b0a1d11,#0b0a1d99),url("https://images-assets.nasa.gov/image/as11-40-5875/as11-40-5875~large.jpg")!important;background-size:cover!important;background-position:center!important}
+.terrain-ridge{opacity:.2!important;mix-blend-mode:multiply}
+.artifact-track{align-items:flex-end!important;gap:clamp(28px,5vw,76px)!important;padding-inline:8vw!important}
+.artifact-marker{min-width:clamp(140px,16vw,205px)!important;min-height:190px!important;background:linear-gradient(180deg,#100d2dcc,#10071ff5)!important;border:1px solid #a66cff!important;box-shadow:0 0 0 4px #0a081b,0 0 28px #a13dff55!important;padding:14px!important}
+.artifact-marker:before{content:"ARCHIVE SPECIMEN";display:block;margin-bottom:10px;color:#42f5e9;font:9px monospace;letter-spacing:.13em}
+.artifact-marker:after{content:"OPEN RECORD ↗";display:block;margin-top:10px;color:#ff63d7;font:9px monospace;letter-spacing:.12em}
+.artifact-label{max-width:190px!important;white-space:normal!important;line-height:1.35!important}
+.artifact-drawing{filter:drop-shadow(0 0 14px #ff4fcb66)!important;transform:scale(1.25)}
+.object-panel{background:linear-gradient(145deg,#140a2d,#080719)!important;border:1px solid #a66cff!important;box-shadow:0 0 0 5px #080719,0 0 50px #a13dff55!important}
+.object-panel:before{content:"FIELD DOSSIER / VERIFIED RECORD";display:block;color:#42f5e9;font:10px monospace;letter-spacing:.15em;margin-bottom:14px}
+.ship-image{mix-blend-mode:normal!important;filter:drop-shadow(0 0 20px #ff4fcb66)!important}
+.background-cameo{display:none!important}
