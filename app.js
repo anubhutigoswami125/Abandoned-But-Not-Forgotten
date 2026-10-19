@@ -180,9 +180,18 @@ function renderArchive() {
     const title = document.createElement("h3"); title.textContent = a.name;
     const mission = document.createElement("p"); mission.className = "archive-record-mission"; mission.textContent = a.mission;
     const summary = document.createElement("p"); summary.className = "archive-record-summary"; summary.textContent = a.history;
-    const button = document.createElement("button"); button.className = "archive-record-open"; button.type = "button"; button.textContent = "OPEN RECORD ↗";
-    button.addEventListener("click", () => { currentWorld = a.world; enterWorld(a.world); openArtifact(a, button); });
-    card.append(meta,title,mission,summary,button); grid.appendChild(card);
+    const sourceLinks = document.createElement("div"); sourceLinks.className = "archive-record-sources"; sourceLinks.setAttribute("aria-label", "Official mission and data sources");
+    (a.sources || []).slice(0, 2).forEach(source => {
+      const link = document.createElement("a");
+      link.href = source.url;
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+      link.textContent = source.label + " ↗";
+      sourceLinks.appendChild(link);
+    });
+    const button = document.createElement("button"); button.className = "archive-record-open"; button.type = "button"; button.textContent = "OPEN OBJECT DOSSIER ↗";
+    button.addEventListener("click", () => { enterWorld(a.world); openArtifact(a, button); });
+    card.append(meta,title,mission,summary,sourceLinks,button); grid.appendChild(card);
   });
 }
 function returnFromArchive() { showScene(scenes[lastSceneBeforeArchive] ? lastSceneBeforeArchive : "destinations"); }
