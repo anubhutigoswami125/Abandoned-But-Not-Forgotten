@@ -912,3 +912,60 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
   color: #ff9ef4;
   text-decoration-color: currentColor;
 }
+
+
+/* POINT-AND-CLICK ADVENTURE LAYER */
+#planet-scene .field-tools{
+  position:fixed;right:22px;bottom:132px;z-index:45;display:flex;align-items:center;gap:8px;
+  padding:9px;background:rgba(10,7,31,.94);border:2px solid #8e6acb;
+  box-shadow:5px 5px 0 #08051d,0 0 24px #b34bff25;backdrop-filter:blur(12px)
+}
+.field-tools-label{display:flex;align-items:center;gap:7px;padding:0 8px;color:#bdb1e4;font:9px "Courier New",monospace;letter-spacing:.1em}
+.field-tools-label i{display:inline-block;width:7px;height:7px;background:#6df7ee;border-radius:50%;box-shadow:0 0 12px #6df7ee;animation:field-blink 1.4s steps(2,end) infinite}
+#planet-scene .field-tools button{min-height:38px;padding:0 11px;background:#241447;border:2px solid #6df7ee;color:#6df7ee;font:700 10px "Courier New",monospace;letter-spacing:.06em;cursor:pointer;box-shadow:3px 3px 0 #08051d;transition:transform .16s,background .16s,color .16s}
+#planet-scene .field-tools button:hover,#planet-scene .field-tools button:focus-visible{background:#6df7ee;color:#100b2b;transform:translate(-1px,-2px)}
+#field-log-count{display:inline-grid;place-items:center;min-width:19px;height:19px;margin-left:4px;padding:0 4px;background:#f05a9d;color:#170f35}
+.field-toast{position:fixed;left:50%;bottom:132px;z-index:46;display:flex;align-items:center;gap:10px;max-width:min(580px,calc(100vw - 32px));padding:12px 16px;background:#100b2bf5;border:2px solid #f05a9d;color:#fff0fb;box-shadow:4px 4px 0 #050414;opacity:0;transform:translate(-50%,12px);pointer-events:none;transition:opacity .22s,transform .22s}
+.field-toast.is-visible{opacity:1;transform:translate(-50%,0)}
+.field-toast-icon{display:grid;place-items:center;flex:0 0 25px;width:25px;height:25px;background:#6df7ee;color:#100b2b;font-size:20px;font-weight:bold}
+.field-toast-copy{font:700 10px/1.5 "Courier New",monospace;letter-spacing:.05em}
+.field-reticle{position:absolute;z-index:6;left:0;top:0;width:28px;height:28px;border:1px solid #6df7ee;border-radius:50%;transform:translate(-50%,-50%) scale(.65);opacity:0;pointer-events:none;transition:opacity .12s,transform .12s;box-shadow:0 0 15px #6df7ee50}
+.field-reticle:before,.field-reticle:after{content:"";position:absolute;background:#6df7ee}
+.field-reticle:before{width:38px;height:1px;left:-6px;top:13px}
+.field-reticle:after{height:38px;width:1px;top:-6px;left:13px}
+.field-reticle.is-active{opacity:.85;transform:translate(-50%,-50%) scale(1)}
+#planet-scene .artifact-marker{cursor:crosshair}
+#planet-scene .artifact-marker .artifact-label{transition:transform .18s,border-color .18s,box-shadow .18s}
+#planet-scene .artifact-marker:hover .artifact-label{transform:translateY(-2px);box-shadow:0 0 20px #f05a9d80,3px 3px 0 #08051d}
+#planet-scene .artifact-marker.scan-found .artifact-drawing{animation:artifact-scan-pop .42s cubic-bezier(.2,.8,.2,1) both}
+#planet-scene .artifact-marker.scan-priority .artifact-label{border-color:#6df7ee!important;box-shadow:0 0 0 2px #6df7ee50,0 0 28px #6df7ee!important;animation:field-target-pulse .85s steps(2,end) 3}
+#planet-scene .artifact-marker.was-inspected .artifact-label{border-color:#6df7ee!important}
+#planet-scene #landscape.is-scanning:after{content:"";position:absolute;z-index:8;inset:0;pointer-events:none;background:linear-gradient(180deg,transparent 0%,#6df7ee04 40%,#6df7ee32 50%,#6df7ee04 60%,transparent 100%);background-size:100% 220%;animation:field-scan-sweep 1.15s linear}
+.field-log-panel{position:fixed;right:22px;top:calc(50% - 220px);z-index:90;width:min(390px,calc(100vw - 28px));max-height:min(70vh,650px);overflow:auto;padding:20px;background:linear-gradient(150deg,#20113c,#100b27 75%);border:3px solid #6df7ee;box-shadow:7px 7px 0 #050414,0 0 42px #6df7ee24;color:#fff0fb}
+.field-log-heading{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;border-bottom:1px solid #5c4b9a;padding-bottom:14px}
+.field-log-heading .eyebrow{margin-bottom:6px}
+.field-log-heading h3{font-size:28px;line-height:1;margin:0;text-shadow:3px 3px #a62f94}
+.field-log-heading>button{width:36px;height:36px;border:2px solid #ffb0d7;background:#241447;color:#fff0fb;font-size:25px;cursor:pointer}
+.field-log-intro,.field-log-empty{font:11px/1.7 Arial,Helvetica,sans-serif;color:#c9bce9}
+.field-log-list{display:grid;gap:8px;margin-top:14px}
+.field-log-entry{display:flex;flex-direction:column;align-items:flex-start;gap:4px;padding:12px;background:#171033;border:1px solid #5c4b9a;text-align:left;cursor:pointer;transition:transform .15s,border-color .15s}
+.field-log-entry:hover,.field-log-entry:focus-visible{transform:translateX(3px);border-color:#6df7ee}
+.field-log-entry-title{color:#fff0fb;font:700 12px/1.4 "Courier New",monospace}
+.field-log-entry-meta{color:#6df7ee;font:9px "Courier New",monospace;letter-spacing:.1em}
+@keyframes field-blink{0%,100%{opacity:1}50%{opacity:.28}}
+@keyframes artifact-scan-pop{0%{filter:brightness(1);transform:translateY(0)}45%{filter:brightness(1.8) drop-shadow(0 0 20px #6df7ee);transform:translateY(-9px)}100%{filter:brightness(1.15);transform:translateY(0)}}
+@keyframes field-target-pulse{0%,100%{box-shadow:0 0 0 0 #6df7ee40}50%{box-shadow:0 0 0 5px #6df7ee30,0 0 26px #6df7ee}}
+@keyframes field-scan-sweep{from{background-position:0 -100%}to{background-position:0 100%}}
+@media(max-width:760px){
+ #planet-scene .field-tools{right:10px;bottom:118px;gap:5px;padding:6px}
+ .field-tools-label{display:none}
+ #planet-scene .field-tools button{min-height:36px;padding:0 9px;font-size:9px}
+ .field-toast{bottom:172px}
+ .field-log-panel{right:10px;top:15%;max-height:68vh;padding:15px}
+}
+@media(prefers-reduced-motion:reduce){
+ .field-tools-label i{animation:none}
+ .field-toast,.field-reticle{transition:none}
+ #planet-scene .artifact-marker.scan-found .artifact-drawing,#planet-scene .artifact-marker.scan-priority .artifact-label{animation:none}
+ #planet-scene #landscape.is-scanning:after{animation:none}
+}
