@@ -381,6 +381,7 @@ $("#begin-mission").addEventListener("click", beginGuide);
 $("#skip-arrival").addEventListener("click", beginGuide);
 $("#open-archive").addEventListener("click", openArchive);
 $("#planet-open-archive").addEventListener("click", openArchive);
+$("#planet-top-archive").addEventListener("click", openArchive);
 $("#archive-back").addEventListener("click", returnFromArchive);
 $("#archive-to-worlds").addEventListener("click", showDestinations);
 $("#open-reflection").addEventListener("click", () => showScene("reflection"));
