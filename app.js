@@ -385,7 +385,7 @@ document.addEventListener("keydown", event => {
   if (event.key === "Escape" && panelOpen) { closeArtifact(); return; }
   if (event.key === "Tab" && (tourOpen || panelOpen)) {
     const modal = tourOpen ? tourOverlay : panel;
-    const focusable = $("button:not([disabled]),a[href],input,select,[tabindex]:not([tabindex=\"-1\"])", modal).filter(el => el.offsetParent !== null);
+    const focusable = $$("button:not([disabled]),a[href],input,select,[tabindex]:not([tabindex=\"-1\"])", modal).filter(el => el.offsetParent !== null);
     if (focusable.length) {
       const first = focusable[0], last = focusable[focusable.length - 1];
       if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
