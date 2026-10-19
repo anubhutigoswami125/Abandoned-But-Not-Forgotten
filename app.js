@@ -309,9 +309,9 @@ $("#open-reflection").addEventListener("click", () => showScene("reflection"));
 $("#reflection-explore").addEventListener("click", showDestinations);
 $("#reflection-archive").addEventListener("click", openArchive);
 $("#archive-search").addEventListener("input", event => { archiveQuery = event.target.value.trim(); renderArchive(); });
-$(".archive-filter").forEach(button => button.addEventListener("click", () => {
+$$(".archive-filter").forEach(button => button.addEventListener("click", () => {
   archiveFilter = button.dataset.filter;
-  $(".archive-filter").forEach(item => { const active = item === button; item.classList.toggle("active", active); item.setAttribute("aria-pressed", String(active)); });
+  $$(".archive-filter").forEach(item => { const active = item === button; item.classList.toggle("active", active); item.setAttribute("aria-pressed", String(active)); });
   renderArchive();
 }));
 
