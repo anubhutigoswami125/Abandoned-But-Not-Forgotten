@@ -230,7 +230,9 @@ function renderArtifacts() {
   const list = artifacts[currentWorld];
   const track = $("#artifact-track");
   track.replaceChildren();
-  track.style.height = Math.max(1, Math.ceil(list.length / 4)) * 440 + 160 + "px";
+  const surfaceHeight = Math.max(1400, Math.ceil(list.length / 4) * 440 + 160);
+  track.style.height = surfaceHeight + "px";
+  $("#landscape").style.height = surfaceHeight + "px";
   list.forEach((artifact, index) => {
     const button = document.createElement("button");
     const col = index % 4;
