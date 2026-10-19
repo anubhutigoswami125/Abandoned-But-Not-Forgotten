@@ -142,8 +142,9 @@ function archiveStatusFor(artifact) {
   const status = artifact.status.toLowerCase();
   if (/uncertain|not conclusively|not confirmed|unknown|fate of some|not established/.test(status)) return "uncertain";
   if (/crash|impact|failed|failure|crashed|lost contact during landing/.test(status)) return "impact";
-  if (/passive|observations continue|remain operational|still operating|continues to/.test(status)) return "planned";
-  if (/left on|left behind|deliberately left|remain at|remains on|remain on|remains at|were left|was left/.test(status)) return "planned";
+  if (/mission ended|ended attempts|operations ended|could not be repositioned|became stuck|reduced power|stopped communicating|last successful communication|ended after damage|retired aircraft/.test(status)) return "retired";
+  if (/passive|observations continue|remain operational|still operating|continues to|deliberately left|left on the moon as part of the mission design|descent stage was left on the lunar surface|left behind as part of the mission design/.test(status)) return "planned";
+  if (/left on|left behind|remain at their landing sites|remain at their sites|remains at their deployment sites|were left on the moon|was left on the moon|stations and cables remain/.test(status)) return "planned";
   return "retired";
 }
 function populateMissionFilter(all) {
@@ -196,7 +197,8 @@ function showScene(name) {
     }
   });
   closeArtifact(false);
-  window.scrollTo({top: 0, behavior: "smooth"});
+  const reducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  window.scrollTo({top: 0, behavior: reducedMotion ? "auto" : "smooth"});
 }
 function beginGuide() {
   showScene("guide");
@@ -376,9 +378,21 @@ $$(".object-tab").forEach(tab => tab.addEventListener("click", () => {
   renderTab(tab.dataset.tab);
 }));
 document.addEventListener("keydown", event => {
-  if (event.key === "Escape" && !tourOverlay.classList.contains("hidden")) { closeTour(); return; }
+  const panel = $("#object-panel");
+  const tourOpen = tourOverlay && !tourOverlay.classList.contains("hidden");
+  const panelOpen = panel && !panel.classList.contains("hidden");
+  if (event.key === "Escape" && tourOpen) { closeTour(); return; }
+  if (event.key === "Escape" && panelOpen) { closeArtifact(); return; }
+  if (event.key === "Tab" && (tourOpen || panelOpen)) {
+    const modal = tourOpen ? tourOverlay : panel;
+    const focusable = $("button:not([disabled]),a[href],input,select,[tabindex]:not([tabindex=\"-1\"])", modal).filter(el => el.offsetParent !== null);
+    if (focusable.length) {
+      const first = focusable[0], last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+      else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+    }
+  }
   if (!scenes.planet.classList.contains("hidden")) {
-    if (event.key === "Escape") closeArtifact();
     if ($("#object-panel").classList.contains("hidden") && event.key === "ArrowLeft") moveSection(-1);
     if ($("#object-panel").classList.contains("hidden") && event.key === "ArrowRight") moveSection(1);
   }
