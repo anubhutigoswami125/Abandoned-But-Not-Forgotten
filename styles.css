@@ -887,3 +887,28 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
  #planet-scene .dossier-fact.neon-box{padding:13px}
 }
 @media(prefers-reduced-motion:reduce){#planet-scene .dossier-object-model{animation:none!important}#planet-scene .artifact-marker:hover .artifact-drawing{transform:none!important}}
+
+
+/* Archive: keep official research links visible directly beneath each summary. */
+.archive-record-sources {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .55rem .9rem;
+  margin: .9rem 0 1rem;
+  padding-top: .8rem;
+  border-top: 1px solid rgba(99, 239, 255, .24);
+}
+.archive-record-sources a {
+  color: #70f2ff;
+  font-size: .72rem;
+  line-height: 1.55;
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-color: rgba(112, 242, 255, .48);
+  text-underline-offset: .2em;
+}
+.archive-record-sources a:hover,
+.archive-record-sources a:focus-visible {
+  color: #ff9ef4;
+  text-decoration-color: currentColor;
+}
