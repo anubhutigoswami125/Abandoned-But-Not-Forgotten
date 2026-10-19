@@ -513,3 +513,161 @@ window.addEventListener("resize", () => {
     document.head.appendChild(style);
   }
 })();
+
+
+/* POINT-AND-CLICK FIELD SYSTEM — layered on top of the existing museum navigation. */
+(function initPointAndClickField(){
+  const planet = document.querySelector("#planet-scene");
+  const landscape = document.querySelector("#landscape");
+  const track = document.querySelector("#artifact-track");
+  if(!planet || !landscape || !track) return;
+
+  const toolsBar = document.createElement("div");
+  toolsBar.className = "field-tools";
+  toolsBar.setAttribute("aria-label","Planetary exploration tools");
+  toolsBar.innerHTML = '<span class="field-tools-label"><i></i> FIELD INTERFACE</span><button type="button" id="field-scan">⌕ SCAN AREA</button><button type="button" id="field-log">FIELD LOG <b id="field-log-count">0</b></button>';
+  planet.appendChild(toolsBar);
+
+  const toast = document.createElement("div");
+  toast.className = "field-toast";
+  toast.setAttribute("role","status");
+  toast.setAttribute("aria-live","polite");
+  toast.innerHTML = '<span class="field-toast-icon">+</span><span class="field-toast-copy">FIELD SYSTEM READY</span>';
+  planet.appendChild(toast);
+
+  const sweep = document.createElement("div");
+  sweep.className = "field-scan-sweep";
+  sweep.setAttribute("aria-hidden","true");
+  landscape.appendChild(sweep);
+
+  const reticle = document.createElement("div");
+  reticle.className = "field-reticle";
+  reticle.setAttribute("aria-hidden","true");
+  landscape.appendChild(reticle);
+
+  const logPanel = document.createElement("aside");
+  logPanel.className = "field-log-panel hidden";
+  logPanel.setAttribute("aria-label","Discovered artifacts");
+  logPanel.innerHTML = '<div class="field-log-heading"><div><p class="eyebrow">PERSONAL FIELD NOTES</p><h3>Discoveries</h3></div><button type="button" id="field-log-close" aria-label="Close field log">×</button></div><p class="field-log-intro">Objects you have inspected are recorded here for this browser session and saved discoveries.</p><div id="field-log-list" class="field-log-list"></div>';
+  planet.appendChild(logPanel);
+
+  let toastTimer = 0;
+  function say(message){
+    const copy=toast.querySelector(".field-toast-copy");
+    copy.textContent=message;
+    toast.classList.add("is-visible");
+    clearTimeout(toastTimer);
+    toastTimer=window.setTimeout(()=>toast.classList.remove("is-visible"),3200);
+  }
+  function refreshLog(){
+    const count=document.querySelector("#field-log-count");
+    const list=document.querySelector("#field-log-list");
+    if(!count||!list) return;
+    let found=[];
+    try{
+      const stored=JSON.parse(localStorage.getItem("aftermission-discovered")||"[]");
+      found=Array.isArray(stored)?stored:[];
+    }catch(_){}
+    count.textContent=String(found.length);
+    list.replaceChildren();
+    const data=Object.values(artifacts).flat().filter(item=>found.includes(item.id));
+    if(!data.length){
+      const empty=document.createElement("p");
+      empty.className="field-log-empty";
+      empty.textContent="No discoveries yet. Scan the terrain, then select an artifact to begin your field notes.";
+      list.appendChild(empty);
+      return;
+    }
+    data.forEach((item,index)=>{
+      const button=document.createElement("button");
+      button.type="button";
+      button.className="field-log-entry";
+      const title=document.createElement("span");
+      title.className="field-log-entry-title";
+      title.textContent=item.name;
+      const meta=document.createElement("span");
+      meta.className="field-log-entry-meta";
+      meta.textContent=(item.world|| (artifacts.moon.includes(item)?"moon":"mars")).toUpperCase()+" / "+item.kind.toUpperCase();
+      button.append(title,meta);
+      button.addEventListener("click",()=>{
+        logPanel.classList.add("hidden");
+        enterWorld(item.world || (artifacts.moon.includes(item)?"moon":"mars"));
+        window.setTimeout(()=>{
+          const trigger=track.querySelector('[data-artifact-id="'+CSS.escape(item.id)+'"]');
+          openArtifact(item,trigger||null);
+        },80);
+      });
+      list.appendChild(button);
+    });
+  }
+  document.querySelector("#field-scan").addEventListener("click",()=>{
+    landscape.classList.remove("is-scanning");
+    void landscape.offsetWidth;
+    landscape.classList.add("is-scanning");
+    const markers=[...track.querySelectorAll(".artifact-marker")];
+    markers.forEach((marker,index)=>{
+      marker.classList.remove("scan-found");
+      window.setTimeout(()=>marker.classList.add("scan-found"),80+index*45);
+    });
+    const current=artifacts[currentWorld]||[];
+    const foundIds=new Set();
+    try{JSON.parse(localStorage.getItem("aftermission-discovered")||"[]").forEach(id=>foundIds.add(id));}catch(_){}
+    const next=current.find(item=>!foundIds.has(item.id));
+    say(next ? "SIGNAL FOUND · "+next.name.toUpperCase()+" · SELECT THE MARKER TO INVESTIGATE" : "SCAN COMPLETE · ALL "+current.length+" LOCAL RECORDS DISCOVERED");
+    if(next){
+      const marker=track.querySelector('[data-artifact-id="'+CSS.escape(next.id)+'"]');
+      if(marker){
+        marker.classList.add("scan-priority");
+        marker.scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"center"});
+        window.setTimeout(()=>marker.classList.remove("scan-priority"),3500);
+      }
+    }
+    window.setTimeout(()=>landscape.classList.remove("is-scanning"),1500);
+  });
+  document.querySelector("#field-log").addEventListener("click",()=>{
+    refreshLog();
+    logPanel.classList.toggle("hidden");
+    if(!logPanel.classList.contains("hidden")) document.querySelector("#field-log-close").focus();
+  });
+  document.querySelector("#field-log-close").addEventListener("click",()=>{
+    logPanel.classList.add("hidden");
+    document.querySelector("#field-log").focus();
+  });
+
+  landscape.addEventListener("pointermove",event=>{
+    if(event.pointerType==="touch") return;
+    const rect=landscape.getBoundingClientRect();
+    reticle.style.left=(event.clientX-rect.left)+"px";
+    reticle.style.top=(event.clientY-rect.top)+"px";
+    reticle.classList.add("is-active");
+  });
+  landscape.addEventListener("pointerleave",()=>reticle.classList.remove("is-active"));
+  track.addEventListener("click",event=>{
+    const marker=event.target.closest(".artifact-marker");
+    if(marker){
+      marker.classList.add("was-inspected");
+      say("DOSSIER OPENED · "+(marker.querySelector(".artifact-label")?.textContent||"ARTIFACT").toUpperCase());
+      window.setTimeout(refreshLog,100);
+    }
+  },true);
+  const panel=document.querySelector("#object-panel");
+  if(panel){
+    new MutationObserver(()=>{
+      if(!panel.classList.contains("hidden")) window.setTimeout(refreshLog,80);
+    }).observe(panel,{attributes:true,attributeFilter:["class"]});
+  }
+  document.addEventListener("keydown",event=>{
+    if(event.key==="Escape"&&!logPanel.classList.contains("hidden")){
+      logPanel.classList.add("hidden");
+      document.querySelector("#field-log").focus();
+    }
+  });
+  window.addEventListener("storage",refreshLog);
+  const oldEnterWorld=window.enterWorld;
+  // Keep the field tools synchronized whenever the visitor changes worlds.
+  document.querySelectorAll(".destination-card").forEach(button=>button.addEventListener("click",()=>{
+    logPanel.classList.add("hidden");
+    window.setTimeout(()=>{refreshLog();say((button.dataset.world==="moon"?"LUNAR":"MARTIAN")+" FIELD SITE LOADED · SCAN TO LOCATE AN ARTIFACT");},500);
+  }));
+  refreshLog();
+})();
