@@ -862,7 +862,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
 #planet-scene .source-area h4{color:#83f4ff!important}
 #planet-scene .source-area a{color:#f2a6ff!important;text-underline-offset:3px}
 #planet-scene .record-note{color:#ad9abf!important}
-@keyframes dossier-object-turn{0%{transform:perspective(800px) rotateY(-14deg) rotateZ(-2deg)}50%{transform:perspective(800px) rotateY(14deg) rotateZ(2deg)}100%{transform:perspective(800px) rotateY(-14deg) rotateZ(-2deg)}}
+@keyframes dossier-object-turn{from{transform:perspective(800px) rotateY(0deg) rotateZ(-2deg)}to{transform:perspective(800px) rotateY(360deg) rotateZ(-2deg)}}
 @media(max-width:760px){
  #planet-scene.planet-scene{min-height:calc(100svh - 120px)!important}
  #planet-scene .planet-topbar{align-items:flex-start;flex-wrap:wrap;padding:10px 12px;gap:8px}
