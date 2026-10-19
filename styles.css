@@ -755,3 +755,25 @@ button:focus-visible,a:focus-visible{outline:2px solid #ffb7e3;outline-offset:4p
 
 .intro-actions{display:flex;align-items:center;gap:18px;flex-wrap:wrap}.intro-actions .text-button{color:#d6bddb;font-size:11px;letter-spacing:.1em}.intro-actions .text-button:hover{color:#ffb7e3}
 @media(prefers-reduced-motion:reduce){.cutscene-playing,.cutscene-playing *{animation:none!important;transition:none!important}}
+
+
+/* AfterMission refinement: evidence-led landscapes, useful archive filters, accessible controls */
+.archive-refine{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:14px 0 24px;padding:14px;border:1px solid #604b70;background:linear-gradient(120deg,#181127d9,#0b1424e8)}
+.archive-refine label{display:flex;flex-direction:column;gap:7px;color:#d9b8f4;font:700 9px/1.4 ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:.09em}
+.archive-refine select{width:100%;min-width:0;min-height:40px;padding:8px 10px;border:1px solid #665478;border-radius:0;background:#100f20;color:#f5eafc;font:12px Arial,Helvetica,sans-serif}
+.archive-refine select:focus-visible{outline:2px solid #f08bdc;outline-offset:3px}
+.archive-grid-wrap{min-height:160px}
+#landscape{isolation:isolate}
+#landscape::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background-size:cover;background-position:center 58%;opacity:.43;filter:saturate(.72) contrast(1.08);transition:opacity .35s ease}
+#landscape.mars-terrain::before{background-image:linear-gradient(180deg,#10102025 0%,#24152a38 45%,#a34f3933 100%),url("https://images-assets.nasa.gov/image/PIA24422/PIA24422~medium.jpg")}
+#landscape.moon-terrain::before{background-image:linear-gradient(180deg,#11152930 0%,#1b20323b 48%,#090d19a6 100%),url("https://images-assets.nasa.gov/image/as17-140-21497/as17-140-21497~medium.jpg")}
+#landscape .terrain-ridge{z-index:1;pointer-events:none}
+#landscape .artifact-track{z-index:3}
+.landscape-footer{position:relative;z-index:5;flex-wrap:wrap;row-gap:8px}
+.landscape-credit{color:#d8b9f4;text-decoration:none;font-size:9px;letter-spacing:.08em}
+.landscape-credit:hover,.landscape-credit:focus-visible{color:#fff;border-bottom:1px solid currentColor}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid #f08bdc;outline-offset:3px}
+.action-button:disabled,.text-button:disabled{cursor:not-allowed;opacity:.45}
+@media(max-width:850px){.archive-refine{grid-template-columns:repeat(2,minmax(0,1fr))}.landscape-credit{max-width:100%}}
+@media(max-width:560px){.archive-refine{grid-template-columns:1fr}.archive-refine select{min-height:44px}.landscape-credit{font-size:8px}.landscape-footer{padding-bottom:18px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}#landscape::before{transition:none}.artifact-track{transition:none}*{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
