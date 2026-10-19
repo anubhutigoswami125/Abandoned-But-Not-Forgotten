@@ -286,7 +286,7 @@ function moveSection(delta) {
   sectionIndex = Math.max(0, Math.min(max, sectionIndex + delta));
   updateLandscapePosition();
   const item = artifacts[currentWorld][sectionIndex];
-  const marker = $(".artifact-marker", $("#artifact-track"))[sectionIndex];
+  const marker = $$(".artifact-marker", $("#artifact-track"))[sectionIndex];
   $("#guide-tip-text").textContent = "Nearby exhibit: " + item.name + ". Select it to read the research record.";
   if (marker) marker.scrollIntoView({behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "center", inline: "nearest"});
 }
