@@ -18,6 +18,10 @@ let lastFocusedElement = null;
 let lastSceneBeforeArchive = "destinations";
 let archiveFilter = "all";
 let archiveQuery = "";
+let archiveMission = "all";
+let archiveKind = "all";
+let archiveEra = "all";
+let archiveStatus = "all";
 const discoveredIds = new Set();
 try { JSON.parse(localStorage.getItem("aftermission-discovered") || "[]").forEach(id => discoveredIds.add(id)); } catch (_) {}
 
@@ -125,15 +129,47 @@ function openArchive() {
   showScene("archive");
   $("#archive-search").focus({preventScroll:true});
 }
+function archiveEraFor(artifact) {
+  const years = (artifact.mission + " " + artifact.launch).match(/(?:19|20)[0-9]{2}/g);
+  if (!years) return "unknown";
+  const year = Math.min(...years.map(Number));
+  if (year < 1980) return "1960";
+  if (year < 2000) return "1980";
+  if (year < 2020) return "2000";
+  return "2020";
+}
+function archiveStatusFor(artifact) {
+  const status = artifact.status.toLowerCase();
+  if (/uncertain|not conclusively|not confirmed|unknown|fate of some|not established/.test(status)) return "uncertain";
+  if (/crash|impact|failed|failure|crashed|lost contact during landing/.test(status)) return "impact";
+  if (/passive|observations continue|remain operational|still operating|continues to/.test(status)) return "planned";
+  if (/left on|left behind|deliberately left|remain at|remains on|remain on|remains at|were left|was left/.test(status)) return "planned";
+  return "retired";
+}
+function populateMissionFilter(all) {
+  const select = $("#archive-mission-filter");
+  if (!select) return;
+  const previous = archiveMission;
+  const missions = [...new Set(all.map(a => a.mission))].sort((a, b) => a.localeCompare(b));
+  select.replaceChildren(new Option("All missions", "all"));
+  missions.forEach(mission => select.add(new Option(mission, mission)));
+  select.value = missions.includes(previous) ? previous : "all";
+  archiveMission = select.value;
+}
 function renderArchive() {
   const grid = $("#archive-grid");
   if (!grid) return;
   grid.replaceChildren();
   const all = [...artifacts.moon.map(a => ({...a, world:"moon"})), ...artifacts.mars.map(a => ({...a, world:"mars"}))];
+  populateMissionFilter(all);
   const filtered = all.filter(a => {
-    const haystack = [a.name,a.mission,a.kind,a.history,a.purpose].join(" ").toLowerCase();
+    const haystack = [a.name,a.mission,a.kind,a.history,a.purpose,a.status].join(" ").toLowerCase();
     const worldMatch = archiveFilter === "all" || archiveFilter === a.world || (archiveFilter === "discovered" && discoveredIds.has(a.id));
-    return worldMatch && haystack.includes(archiveQuery.toLowerCase());
+    const missionMatch = archiveMission === "all" || archiveMission === a.mission;
+    const kindMatch = archiveKind === "all" || archiveKind === a.kind;
+    const eraMatch = archiveEra === "all" || archiveEraFor(a) === archiveEra;
+    const statusMatch = archiveStatus === "all" || archiveStatusFor(a) === archiveStatus;
+    return worldMatch && missionMatch && kindMatch && eraMatch && statusMatch && haystack.includes(archiveQuery.toLowerCase());
   });
   $("#archive-count").textContent = filtered.length + " / " + all.length + " RESEARCH RECORDS";
   $("#archive-empty").classList.toggle("hidden", filtered.length > 0);
@@ -180,6 +216,11 @@ function enterWorld(world) {
   $("#guide-tip-text").textContent = world === "moon"
     ? "The Moon preserves hardware from human and robotic missions. Select an exhibit to investigate it."
     : "Mars holds the remains of robotic explorers. Select an exhibit to investigate its mission.";
+  const landscapeSource = $("#landscape-source");
+  if (landscapeSource) {
+    landscapeSource.href = world === "moon" ? "https://science.nasa.gov/resource/apollo-17-eva/" : "https://science.nasa.gov/photojournal/perseverance-navcams-360-degree-panorama/";
+    landscapeSource.textContent = world === "moon" ? "LANDSCAPE IMAGE: NASA / GENE CERNAN ↗" : "LANDSCAPE IMAGE: NASA / JPL-CALTECH ↗";
+  }
   renderArtifacts();
   showScene("planet");
 }
@@ -309,6 +350,10 @@ $("#open-reflection").addEventListener("click", () => showScene("reflection"));
 $("#reflection-explore").addEventListener("click", showDestinations);
 $("#reflection-archive").addEventListener("click", openArchive);
 $("#archive-search").addEventListener("input", event => { archiveQuery = event.target.value.trim(); renderArchive(); });
+$("#archive-mission-filter").addEventListener("change", event => { archiveMission = event.target.value; renderArchive(); });
+$("#archive-kind-filter").addEventListener("change", event => { archiveKind = event.target.value; renderArchive(); });
+$("#archive-era-filter").addEventListener("change", event => { archiveEra = event.target.value; renderArchive(); });
+$("#archive-status-filter").addEventListener("change", event => { archiveStatus = event.target.value; renderArchive(); });
 $$(".archive-filter").forEach(button => button.addEventListener("click", () => {
   archiveFilter = button.dataset.filter;
   $$(".archive-filter").forEach(item => { const active = item === button; item.classList.toggle("active", active); item.setAttribute("aria-pressed", String(active)); });
