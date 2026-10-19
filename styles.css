@@ -802,3 +802,88 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
 .eyebrow{color:#a8eaf1}
 .landscape-credit{color:#e0b9f3}
 @media(prefers-reduced-motion:reduce){.destination-card:hover,.destination-card:focus-visible{transform:none}}
+
+
+/* Planetary field: a long, scrollable surface rather than a row of selectable tiles */
+#planet-scene.planet-scene{height:auto!important;min-height:calc(100svh - 136px)!important;overflow:visible!important;background:#08091b!important;isolation:isolate}
+#planet-scene .planet-topbar{position:sticky!important;top:0;min-height:78px;z-index:35;gap:14px;padding:12px clamp(12px,3vw,34px);background:linear-gradient(180deg,rgba(7,8,24,.98),rgba(12,10,31,.9));border-bottom:1px solid #8752b9;backdrop-filter:blur(14px)}
+#planet-scene .planet-nav-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+#planet-scene .planet-topbar>div:not(.planet-nav-actions){text-align:center}
+#planet-scene .planet-topbar h2{color:#f4dcff;text-shadow:0 0 22px #9b52df80}
+#planet-scene .text-button{background:#120f2c!important;color:#f5e7ff!important;border:1px solid #8a56ba!important;box-shadow:inset 0 0 14px #a647d21a;min-height:38px}
+#planet-scene .text-button:hover,#planet-scene .text-button:focus-visible{background:#382052!important;border-color:#ff7cde!important;box-shadow:0 0 18px #db5bf05e}
+#planet-scene .space-sky{position:absolute;top:78px;left:0;right:0;height:340px;z-index:0;pointer-events:none;overflow:hidden}
+#planet-scene .planet-disc{opacity:.5}
+#planet-scene #landscape.landscape{position:relative!important;inset:auto!important;display:block;width:100%;height:auto!important;min-height:1400px;overflow:hidden!important;margin:0;background:linear-gradient(180deg,#0b0b20 0%,#13152a 12%,#19182b 100%)!important;border:0!important}
+#planet-scene #landscape.landscape::before{inset:0!important;position:absolute!important;z-index:0!important;opacity:.27!important;background-size:100% 440px!important;background-repeat:repeat-y!important;background-position:center top!important;filter:saturate(.8) contrast(1.12)!important;pointer-events:none!important}
+#planet-scene #landscape.landscape.mars-terrain::before{background-image:linear-gradient(180deg,#10102012 0%,#24152a22 46%,#a34f3938 100%),url("https://images-assets.nasa.gov/image/PIA24422/PIA24422~medium.jpg")!important}
+#planet-scene #landscape.landscape.moon-terrain::before{background-image:linear-gradient(180deg,#11152912 0%,#1b203222 48%,#090d1940 100%),url("https://images-assets.nasa.gov/image/as17-140-21497/as17-140-21497~medium.jpg")!important}
+#planet-scene #landscape.landscape::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:repeating-linear-gradient(180deg,transparent 0 205px,rgba(95,76,121,.3) 205px 210px,transparent 210px 440px),repeating-linear-gradient(180deg,transparent 0 220px,rgba(100,76,91,.13) 220px 440px)}
+#planet-scene .terrain-ridge{display:none!important}
+#planet-scene #artifact-track.artifact-track{position:absolute!important;inset:0!important;left:0!important;right:0!important;top:0!important;display:block!important;width:100%!important;min-width:0!important;height:auto;transform:none!important;padding:0!important;margin:0!important;z-index:3;pointer-events:none}
+#planet-scene .artifact-marker{position:absolute!important;left:var(--artifact-x)!important;top:var(--artifact-y)!important;bottom:auto!important;display:flex!important;align-items:center;justify-content:flex-end;flex-direction:column;gap:7px;width:clamp(116px,15vw,190px)!important;height:clamp(145px,19vw,210px)!important;min-height:0!important;flex:0 0 auto!important;padding:8px 4px 16px!important;transform:translateX(-50%) scale(var(--artifact-scale,1))!important;transform-origin:center bottom!important;background:transparent!important;border:0!important;box-shadow:none!important;border-radius:0!important;pointer-events:auto!important;z-index:4}
+#planet-scene .artifact-marker::before{content:"";position:absolute;left:-12%;right:-12%;bottom:9px;height:23px;background:radial-gradient(ellipse,rgba(4,5,15,.7),transparent 72%);filter:blur(3px);z-index:-1;pointer-events:none}
+#planet-scene .artifact-marker .artifact-drawing{width:clamp(88px,11vw,145px)!important;height:clamp(90px,12vw,150px)!important;flex:0 0 auto;transform-origin:50% 85%;filter:drop-shadow(0 12px 16px #03040a99)!important}
+#planet-scene .artifact-marker .artifact-label{position:relative;z-index:3;max-width:180px;padding:4px 7px;background:rgba(8,8,25,.78)!important;border:1px solid #a777d5!important;color:#f5e8ff!important;font:10px/1.3 "Courier New",monospace!important;letter-spacing:.035em;backdrop-filter:blur(8px);text-shadow:0 1px 5px #000}
+#planet-scene .artifact-marker:hover .artifact-label,#planet-scene .artifact-marker:focus-visible .artifact-label,#planet-scene .artifact-marker.is-current-exhibit .artifact-label{border-color:#ff70dd!important;box-shadow:0 0 14px #da52ef80}
+#planet-scene .artifact-marker:hover .artifact-drawing,#planet-scene .artifact-marker:focus-visible .artifact-drawing{transform:translateY(-7px) scale(1.06)!important;filter:drop-shadow(0 0 15px #df7bff8a)!important}
+#planet-scene .artifact-marker .rover-drawing:before{background:linear-gradient(145deg,#e5e7ee,#777f9b)!important;border-color:#30344d!important}
+#planet-scene .artifact-marker .lander-drawing:before{background:linear-gradient(140deg,#e8d5ab,#8f83a8)!important;border-color:#35324e!important}
+#planet-scene .artifact-marker .instrument-drawing:before{background:linear-gradient(135deg,#c9d4dc,#706b8d)!important;border-color:#38314f!important}
+#planet-scene .artifact-marker .rover-camera,#planet-scene .artifact-marker .instrument-top{background:#78dbe9!important;border-color:#38314f!important}
+#planet-scene .move-arrow{position:fixed!important;top:52vh!important;z-index:40;width:42px;height:54px;border:1px solid #d878ff!important;background:rgba(12,10,34,.88)!important;color:#f8eaff!important;box-shadow:0 0 18px #a346dd2b;backdrop-filter:blur(10px)}
+#planet-scene .move-arrow:disabled{opacity:.38!important}
+#planet-scene .move-left{left:10px!important}
+#planet-scene .move-right{right:10px!important}
+#planet-scene .landscape-footer{position:sticky!important;bottom:0;z-index:32;display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;padding:12px clamp(12px,3vw,30px)!important;background:rgba(9,8,28,.94)!important;border-top:1px solid #8752b9!important;backdrop-filter:blur(16px);color:#e6c9ff!important}
+#planet-scene .landscape-footer .landscape-credit{color:#d6a7ff!important}
+#planet-scene .guide-tip{position:fixed!important;left:12px;bottom:74px;z-index:31;max-width:min(320px,calc(100vw - 24px));background:rgba(14,11,36,.9)!important;border-color:#8752b9!important;backdrop-filter:blur(12px)}
+#planet-scene .guide-tip .guide-mini{background:#a94de0!important;box-shadow:0 0 12px #a94de088}
+#planet-scene .object-panel{position:fixed!important;inset:clamp(12px,3vh,28px) clamp(12px,4vw,56px)!important;transform:none!important;width:auto!important;max-width:1160px;max-height:none!important;height:auto!important;margin:auto;overflow:auto!important;padding:clamp(18px,3vw,34px)!important;background:radial-gradient(ellipse at 14% 8%,#33204f 0%,#15112d 40%,#0b0b20 100%)!important;border:1px solid #b45eff!important;border-radius:5px!important;box-shadow:0 0 0 100vmax #03030cd9,0 0 30px #bc5cff75,inset 0 0 38px #7d32a51b!important;color:#f4e9ff!important;z-index:100!important}
+#planet-scene .object-panel h3{color:#fff0ff!important;font:500 clamp(26px,4vw,46px)/1.05 Georgia,serif!important;text-shadow:0 0 18px #d052f34a!important;max-width:820px}
+#planet-scene .object-panel .object-mission{color:#d6b9f4!important;font:12px/1.5 "Courier New",monospace!important}
+#planet-scene .object-panel .panel-close{position:sticky!important;float:right;top:0;right:0;z-index:10;color:#ffd8ff!important;border:1px solid #ed70e7!important;background:#211334!important;width:42px;height:42px;box-shadow:0 0 16px #c345e54a}
+#planet-scene .object-panel .object-tabs.hidden{display:none!important}
+#planet-scene .object-content{display:grid!important;grid-template-columns:minmax(230px,.75fr) minmax(0,1.25fr);gap:20px;padding:20px 0!important;color:#f2e8ff!important;min-height:0!important}
+#planet-scene .dossier-object-stage{position:sticky;top:12px;align-self:start;min-height:350px;display:grid;place-items:center;overflow:hidden;border:1px solid #a64cff;background:radial-gradient(ellipse at center,#4a267c7a 0%,#17102d 48%,#0b0b20 78%);box-shadow:inset 0 0 35px #9d4cff20,0 0 16px #b45eff25}
+#planet-scene .dossier-orbit{position:absolute;width:min(70%,260px);aspect-ratio:1;border:1px solid #d06aff8c;border-radius:50%;transform:rotateX(68deg) rotateZ(-18deg);box-shadow:0 0 15px #bd4fff44,inset 0 0 12px #bd4fff22}
+#planet-scene .dossier-orbit::before{content:"";position:absolute;width:8px;height:8px;left:10%;top:28%;border-radius:50%;background:#75f5ff;box-shadow:0 0 14px #75f5ff}
+#planet-scene .dossier-object-model{position:relative;z-index:2;width:190px;height:190px;display:grid;place-items:center;animation:dossier-object-turn 18s linear infinite;filter:drop-shadow(0 0 16px #a75aff65)}
+#planet-scene .dossier-object-model .artifact-drawing{width:180px!important;height:180px!important;transform:scale(1.18);filter:drop-shadow(0 0 9px #dc7cff66)}
+#planet-scene .dossier-object-model .rover-drawing:before{background:linear-gradient(145deg,#d8e8ef,#786da9)!important}
+#planet-scene .dossier-object-model .lander-drawing:before{background:linear-gradient(145deg,#f0d8ad,#9174c4)!important}
+#planet-scene .dossier-object-model .instrument-drawing:before{background:linear-gradient(145deg,#bceaf0,#8e5dba)!important}
+#planet-scene .dossier-model-caption{position:absolute;left:10px;right:10px;bottom:10px;text-align:center;color:#bb9ad9;font:9px/1.4 "Courier New",monospace;letter-spacing:.07em}
+#planet-scene .dossier-facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;align-content:start}
+#planet-scene .dossier-fact.neon-box{min-width:0;padding:16px;border:1px solid #a64cff;background:linear-gradient(145deg,#20143bba,#0d0b20eb);box-shadow:inset 0 0 18px #a64cff12,0 0 12px #b45eff1c;border-radius:2px}
+#planet-scene .dossier-fact.neon-box h4{margin:0 0 9px;color:#83f4ff;font:700 10px/1.4 "Courier New",monospace;letter-spacing:.11em}
+#planet-scene .dossier-fact.neon-box p{margin:0;color:#e5d7f4;font:13px/1.65 Arial,Helvetica,sans-serif}
+#planet-scene .source-area{clear:both;border-top:1px solid #7945a0!important;padding-top:16px!important;color:#f0e3ff!important}
+#planet-scene .source-area h4{color:#83f4ff!important}
+#planet-scene .source-area a{color:#f2a6ff!important;text-underline-offset:3px}
+#planet-scene .record-note{color:#ad9abf!important}
+@keyframes dossier-object-turn{0%{transform:perspective(800px) rotateY(-14deg) rotateZ(-2deg)}50%{transform:perspective(800px) rotateY(14deg) rotateZ(2deg)}100%{transform:perspective(800px) rotateY(-14deg) rotateZ(-2deg)}}
+@media(max-width:760px){
+ #planet-scene.planet-scene{min-height:calc(100svh - 120px)!important}
+ #planet-scene .planet-topbar{align-items:flex-start;flex-wrap:wrap;padding:10px 12px;gap:8px}
+ #planet-scene .planet-topbar>div:not(.planet-nav-actions){order:3;width:100%;text-align:left}
+ #planet-scene .planet-topbar h2{margin:0!important}
+ #planet-scene .planet-nav-actions{gap:5px}
+ #planet-scene .planet-topbar .text-button{font-size:8px;padding:7px 8px;min-height:34px}
+ #planet-scene .world-progress{margin-left:auto;font-size:8px}
+ #planet-scene #landscape.landscape{min-height:1400px}
+ #planet-scene .artifact-marker{width:clamp(104px,30vw,150px)!important;height:145px!important}
+ #planet-scene .artifact-marker .artifact-drawing{width:clamp(76px,22vw,112px)!important;height:92px!important}
+ #planet-scene .artifact-marker .artifact-label{font-size:9px!important;max-width:130px}
+ #planet-scene .move-arrow{top:auto!important;bottom:20px!important;width:38px;height:46px}
+ #planet-scene .landscape-footer{padding-bottom:66px!important}
+ #planet-scene .guide-tip{bottom:12px!important;left:10px!important;max-width:calc(100vw - 110px)}
+ #planet-scene .object-panel{inset:8px!important;padding:16px!important}
+ #planet-scene .object-content{grid-template-columns:1fr!important;gap:14px}
+ #planet-scene .dossier-object-stage{position:relative;top:auto;min-height:210px}
+ #planet-scene .dossier-object-model{width:130px;height:130px}
+ #planet-scene .dossier-object-model .artifact-drawing{transform:scale(.8)}
+ #planet-scene .dossier-facts{grid-template-columns:1fr}
+ #planet-scene .dossier-fact.neon-box{padding:13px}
+}
+@media(prefers-reduced-motion:reduce){#planet-scene .dossier-object-model{animation:none!important}#planet-scene .artifact-marker:hover .artifact-drawing{transform:none!important}}
