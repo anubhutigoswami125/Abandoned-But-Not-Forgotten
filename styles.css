@@ -690,3 +690,29 @@ body{background:#080b2a;color:#f8e8ff}
 .object-panel:before{content:"FIELD DOSSIER / VERIFIED RECORD";display:block;color:#42f5e9;font:10px monospace;letter-spacing:.15em;margin-bottom:14px}
 .ship-image{mix-blend-mode:normal!important;filter:drop-shadow(0 0 20px #ff4fcb66)!important}
 .background-cameo{display:none!important}
+
+
+/* MOTION PASS — reduced-motion safe, no image dependency for the hero craft */
+.landing-ship,.ship-image,.ship-top,.ship-body,.ship-window,.ship-leg,.ship-foot,.landing-dust{display:none!important}
+.guide-avatar-placeholder{width:100%;height:100%;display:grid;place-items:center;background:radial-gradient(circle at 35% 30%,#ff8de3,#8b36ff 42%,#100b2e 78%);color:#fff0ff;font:900 clamp(44px,7vw,76px)/1 monospace;letter-spacing:-.12em;text-shadow:0 0 22px #ff2daa;position:relative;overflow:hidden}
+.guide-avatar-placeholder:before,.guide-avatar-placeholder:after{content:"";position:absolute;width:150%;height:1px;background:#42f5e9aa;transform:rotate(-28deg);box-shadow:0 0 14px #42f5e9;animation:guide-scan 4s linear infinite}
+.guide-avatar-placeholder:after{transform:rotate(28deg);animation-delay:-2s}
+.scene{transition:filter .35s ease}
+.scene.is-entering{transform-origin:50% 50%;will-change:transform,opacity,filter}
+.scene.is-entering .eyebrow{animation:eyebrow-in .65s .08s both}
+.scene.is-entering h1,.scene.is-entering h2{animation:heading-in .75s .12s cubic-bezier(.16,1,.3,1) both}
+.scene.is-entering .action-button,.scene.is-entering .destination-card{animation:card-pop .7s .2s cubic-bezier(.16,1,.3,1) both}
+.scene.is-entering .destination-card:nth-child(2){animation-delay:.32s}
+.destination-card{transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s,border-color .35s!important}
+.artifact-marker{transition:transform .28s cubic-bezier(.2,.8,.2,1),filter .28s!important}
+.artifact-marker:hover,.artifact-marker:focus-visible{transform:translateY(-9px) rotate(-1deg) scale(1.025);filter:brightness(1.15)}
+.object-panel:not(.hidden){animation:panel-arrive .42s cubic-bezier(.16,1,.3,1) both}
+.object-tab{transition:background .2s,color .2s,border-color .2s}
+.tour-window{animation:panel-arrive .38s cubic-bezier(.16,1,.3,1) both}
+#scroll-progress{height:3px!important;box-shadow:0 0 12px #ff2daa88;transform-origin:left center}
+@keyframes guide-scan{0%{top:-10%;left:-20%}100%{top:110%;left:30%}}
+@keyframes eyebrow-in{from{opacity:0;letter-spacing:.3em;transform:translateY(8px)}to{opacity:1;letter-spacing:inherit;transform:translateY(0)}}
+@keyframes heading-in{from{opacity:0;transform:translateY(22px) scale(.98);filter:blur(5px)}to{opacity:1;transform:translateY(0) scale(1);filter:blur(0)}}
+@keyframes card-pop{from{opacity:0;transform:translateY(22px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes panel-arrive{from{opacity:0;transform:translateY(18px) scale(.985)}to{opacity:1;transform:translateY(0) scale(1)}}
+@media(prefers-reduced-motion:reduce){.scene,.scene.is-entering,.scene.is-entering .eyebrow,.scene.is-entering h1,.scene.is-entering h2,.scene.is-entering .action-button,.scene.is-entering .destination-card,.object-panel:not(.hidden),.tour-window,.guide-avatar-placeholder:before,.guide-avatar-placeholder:after{animation:none!important;transition:none!important;transform:none!important;filter:none!important}}
