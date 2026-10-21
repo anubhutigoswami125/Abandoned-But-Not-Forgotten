@@ -1003,3 +1003,157 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
   #planet-scene .artifact-marker{width:clamp(104px,30vw,150px)!important;height:145px!important}
 }
 @media(prefers-reduced-motion:reduce){#planet-scene #landscape.landscape{scroll-behavior:auto}}
+
+
+/* AFTER MISSION — NEON FRONTIER VISUAL PASS */
+:root{
+  color-scheme:dark;
+  --ink:#070412;--ink-2:#100824;--paper:#f4efff;--muted:#b6a9d9;
+  --line:#49306f;--rust:#a855f7;--rust-light:#e879f9;--cyan:#55f6ff;
+  --violet:#9b5cff;--magenta:#ff4fd8;--font:Arial,Helvetica,sans-serif;
+}
+html{background:#070412;scroll-behavior:smooth;scrollbar-color:#8b4eea #0b0617}
+body{background:#070412;color:#f4efff}
+::selection{background:#ff4fd8;color:#090414}
+a{color:var(--cyan)}
+.site-header{
+  background:rgba(8,4,20,.94);border-bottom:1px solid #a855f766;
+  box-shadow:0 1px 0 #55f6ff22,0 8px 36px #08021499;
+  backdrop-filter:blur(16px);
+}
+.wordmark{color:#f7edff;text-shadow:0 0 18px #b45cff55}
+.wordmark-mark{border-color:#ff4fd8;color:#ff7be8;box-shadow:inset 0 0 16px #ff4fd822,0 0 18px #ff4fd833}
+.header-note,.scene-coordinate,.landscape-footer,.world-progress{color:#c0b0eb}
+.status-dot{background:#55f6ff;box-shadow:0 0 7px #55f6ff,0 0 17px #55f6ff}
+.scene{background-color:#080414}
+.starfield,.space-sky{
+  background-color:#080414;
+  background-image:radial-gradient(circle at 12% 19%,#fff 0 1px,transparent 1.7px),
+  radial-gradient(circle at 38% 12%,#a8f8ff 0 1px,transparent 1.7px),
+  radial-gradient(circle at 77% 17%,#ff9ef1 0 1px,transparent 1.7px),
+  radial-gradient(circle at 89% 43%,#d9c0ff 0 1px,transparent 1.7px),
+  radial-gradient(circle at 60% 31%,#fff 0 1px,transparent 1.7px),
+  radial-gradient(circle at 22% 65%,#a8f8ff 0 1px,transparent 1.7px),
+  radial-gradient(circle at 48% 78%,#ff9ef1 0 1px,transparent 1.7px),
+  radial-gradient(circle at 92% 83%,#d9c0ff 0 1px,transparent 1.7px);
+}
+.intro-scene,.guide-scene,.destination-scene{
+  background:radial-gradient(ellipse at 76% 38%,#38105d77 0%,transparent 42%),
+  radial-gradient(ellipse at 20% 85%,#172b6b66 0%,transparent 42%),
+  linear-gradient(180deg,#080414 0%,#120724 58%,#20103a 100%);
+}
+.eyebrow{color:#55f6ff;text-shadow:0 0 12px #55f6ff99;letter-spacing:.22em}
+.intro-copy h1{
+  color:#fff8ff;text-shadow:0 0 2px #fff,0 0 22px #b65cff99,0 0 52px #7a32ff55;
+  letter-spacing:-.06em;
+}
+.intro-subtitle,.dialogue-panel>p:not(.eyebrow){color:#d6c9f4}
+.action-button{
+  border:1px solid #ff7be8;background:linear-gradient(115deg,#7626d7,#c026d3);
+  color:#fff;box-shadow:0 0 12px #c026d344,inset 0 0 15px #ffffff12;
+  text-transform:uppercase;letter-spacing:.12em;
+  clip-path:polygon(0 0,calc(100% - 13px) 0,100% 13px,100% 100%,13px 100%,0 calc(100% - 13px));
+  transition:transform .2s,box-shadow .2s,filter .2s;
+}
+.action-button:hover,.action-button:focus-visible{
+  background:linear-gradient(115deg,#9d4edd,#ec4899);color:#fff;
+  box-shadow:0 0 12px #ff4fd8aa,0 0 32px #a855f766,inset 0 0 16px #ffffff22;
+  transform:translateY(-2px);filter:brightness(1.12)
+}
+.distant-planet{
+  background:radial-gradient(circle at 30% 28%,#e4caff,#a46be5 25%,#542a8d 54%,#150b2e 78%);
+  box-shadow:inset -35px -25px 70px #05020d,0 0 48px #a855f755,0 0 120px #7135df55;
+}
+.distant-planet span{border-color:#e7c8ff55;box-shadow:0 0 12px #c084fc33}
+.intro-orbit{border-color:#55f6ff44;box-shadow:0 0 15px #55f6ff14}
+.landing-ship{filter:drop-shadow(0 0 15px #55f6ff55)}
+.dialogue-panel{
+  border:1px solid #b76aff;background:linear-gradient(135deg,#16092af2,#0c1026f5);
+  box-shadow:0 0 0 1px #55f6ff22,0 0 35px #7c3aed22,12px 12px 0 #05020e;
+  position:relative;
+}
+.dialogue-panel:before,.dialogue-panel:after{
+  content:"";position:absolute;width:24px;height:24px;pointer-events:none;
+}
+.dialogue-panel:before{top:-1px;left:-1px;border-top:2px solid #55f6ff;border-left:2px solid #55f6ff}
+.dialogue-panel:after{right:-1px;bottom:-1px;border-right:2px solid #ff4fd8;border-bottom:2px solid #ff4fd8}
+.destination-heading h2{color:#fff;text-shadow:0 0 22px #a855f766}
+.destination-card{
+  border:1px solid #8c5ecb;background:linear-gradient(150deg,#1b1032,#0b0a1e 70%);
+  box-shadow:inset 0 0 35px #a855f70b,0 12px 35px #03020b88;
+  clip-path:polygon(0 0,calc(100% - 22px) 0,100% 22px,100% 100%,0 100%);
+  transition:transform .24s,border-color .24s,box-shadow .24s;
+}
+.destination-card:before{content:"";position:absolute;inset:0;border:1px solid #55f6ff18;pointer-events:none}
+.destination-card:hover,.destination-card:focus-visible{
+  transform:translateY(-6px);border-color:#55f6ff;
+  box-shadow:0 0 0 1px #55f6ff22,0 0 28px #9b5cff55,inset 0 0 42px #9b5cff18;
+}
+.moon-card{background:radial-gradient(ellipse at 70% 20%,#333a8d66,transparent 60%),linear-gradient(150deg,#191332,#090a1c)}
+.mars-card{background:radial-gradient(ellipse at 70% 20%,#c026d344,transparent 60%),linear-gradient(150deg,#28102e,#0c091c)}
+.door-symbol{filter:drop-shadow(0 0 18px #a855f755)}
+.moon-symbol{background:radial-gradient(circle at 32% 28%,#f0e7ff,#a5a8d8 54%,#4e3b7d);box-shadow:inset -14px -10px 22px #17102e,0 0 26px #9f7aea66}
+.mars-symbol{background:radial-gradient(circle at 30% 25%,#ffb6ed,#dc55ba 48%,#63277f);box-shadow:inset -14px -10px 22px #24102f,0 0 28px #ff4fd855}
+.door-enter{color:#55f6ff;text-shadow:0 0 12px #55f6ff77}
+.planet-scene{background:#070412}
+.planet-topbar{
+  background:linear-gradient(180deg,#080414f5,#080414aa 72%,transparent);
+  border-bottom:1px solid #a855f722;
+}
+.planet-topbar h2{color:#fff;text-shadow:0 0 18px #a855f799}
+.text-button{
+  border:1px solid #8c5ecb;background:#100821;color:#e9dcff;
+  box-shadow:inset 0 0 14px #a855f711;transition:border-color .18s,box-shadow .18s,color .18s;
+}
+.text-button:hover,.text-button:focus-visible{
+  border-color:#55f6ff;color:#55f6ff;box-shadow:0 0 16px #55f6ff33,inset 0 0 12px #55f6ff11;
+}
+.planet-disc{
+  background:radial-gradient(circle at 30% 25%,#f0b4ff,#ad5de8 43%,#4b236f 70%,#17102d);
+  box-shadow:inset -25px -20px 50px #090314,0 0 48px #b85cff55,0 0 110px #7835cb33;
+}
+.moon-terrain .planet-disc{
+  background:radial-gradient(circle at 30% 25%,#e6e4ff,#8b8ac5 50%,#3a3269 75%);
+  box-shadow:inset -25px -20px 50px #090314,0 0 48px #8f7cff66;
+}
+.ridge-back{background:#251641;opacity:.95}
+.ridge-front{background:#432267}
+.moon-terrain .ridge-back{background:#282347}
+.moon-terrain .ridge-front{background:#514a83}
+.artifact-marker{filter:drop-shadow(0 0 10px #a855f722)}
+.artifact-marker:hover .artifact-drawing,.artifact-marker:focus-visible .artifact-drawing{
+  filter:brightness(1.2) drop-shadow(0 0 13px #55f6ff88);transform:translateY(-6px) scale(1.03)
+}
+.artifact-label{
+  color:#f8efff;background:#100821eF;border:1px solid #bb7aff99;
+  box-shadow:0 0 15px #a855f722;text-shadow:0 0 8px #a855f744;
+}
+.rover-drawing:before,.lander-drawing:before,.instrument-drawing:before{border-color:#47306f}
+.rover-drawing:after{border-color:#171027}
+.move-arrow{
+  border:1px solid #55f6ff88;background:#100821eF;color:#55f6ff;
+  box-shadow:0 0 20px #55f6ff22;transition:background .2s,box-shadow .2s;
+}
+.move-arrow:hover,.move-arrow:focus-visible{background:#24103f;border-color:#55f6ff;box-shadow:0 0 22px #55f6ff66}
+input,select,textarea{
+  color:#f5ecff;background:#0d071c;border-color:#7547a7;
+}
+input:focus,select:focus,textarea:focus{outline:1px solid #55f6ff;box-shadow:0 0 0 3px #55f6ff22}
+button:focus-visible,a:focus-visible{outline:2px solid #55f6ff;outline-offset:4px}
+hr{border-color:#57317e}
+@keyframes neon-pulse{0%,100%{filter:drop-shadow(0 0 5px #a855f755)}50%{filter:drop-shadow(0 0 13px #d946ef99)}}
+.door-symbol,.planet-disc{animation:neon-pulse 5s ease-in-out infinite}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}
+}
+@media(max-width:640px){
+  .site-header{padding:0 16px}
+  .header-note{font-size:8px;letter-spacing:.08em}
+  .intro-copy{top:10%;left:22px;right:22px}
+  .distant-planet{width:66vw;right:-6%;top:31%;opacity:.7}
+  .landing-ship{right:20%;bottom:12%;transform:scale(.72)}
+  .destination-scene{padding:58px 18px 48px}
+  .destination-doors{grid-template-columns:minmax(0,1fr);gap:14px;margin:32px auto 20px}
+  .destination-card{min-height:240px}
+  .planet-topbar{padding:14px 16px;gap:12px;flex-wrap:wrap}
+}
