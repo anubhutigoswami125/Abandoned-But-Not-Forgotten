@@ -1157,3 +1157,10 @@ hr{border-color:#57317e}
   .destination-card{min-height:240px}
   .planet-topbar{padding:14px 16px;gap:12px;flex-wrap:wrap}
 }
+
+
+/* Dr. Isa supplied portrait */
+.guide-portrait-image{display:block;width:100%;height:100%;object-fit:cover;object-position:center 25%;filter:saturate(1.08) contrast(1.04);transition:filter .25s,transform .35s}
+.portrait-frame:hover .guide-portrait-image{filter:saturate(1.18) contrast(1.06) drop-shadow(0 0 12px #a855f7);transform:scale(1.025)}
+.portrait-frame{border-color:#c084fc!important;box-shadow:0 0 0 1px #55f6ff44,0 0 24px #a855f744,8px 8px 0 #090617!important}
+.portrait-caption{color:#55f6ff!important;text-shadow:0 0 10px #55f6ff66;letter-spacing:.16em}
