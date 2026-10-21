@@ -1,10 +1,10 @@
 # After Mission
 
 An independent student-built, point-and-click museum exploring human-made equipment left on the Moon and Mars. Project concept for NASA Space Apps Challenge 2026, NIT Raipur.
+*This is not an official NASA website and is not endorsed by NASA.
 
-**This is not an official NASA website and is not endorsed by NASA.**
-
-## Visual direction\n\nAfter Mission presents a dreamlike, illustrated space storybook: atmospheric Moon and Mars landscapes, a field-scientist guide, scroll-responsive transitions, and artifact records styled like travel-journal pages. The interface is poetic; scientific claims remain tied to cited primary sources.\n\n## Current prototype
+Visual direction
+After Mission presents a dreamlike, illustrated space storybook: atmospheric Moon and Mars landscapes, a field-scientist guide, scroll-responsive transitions, and artifact records styled like travel-journal pages. The interface is poetic; scientific claims remain tied to cited primary sources.\n\n## Current prototype
 
 - Illustrated spacecraft-arrival opening scene.
 - Scientist guide and destination selection.
