@@ -1215,7 +1215,6 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
 .status-dot{box-shadow:0 0 12px var(--am-blue);animation:am-pulse 2.2s ease-in-out infinite}
 .scene{isolation:isolate;background-color:#060916}
 .scene:after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:radial-gradient(ellipse at 50% 48%,transparent 28%,#03050dc2 100%),linear-gradient(0deg,#04061165,transparent 38%,#04061135);mix-blend-mode:multiply}
-.scene>*{position:relative}
 .scene>.starfield,.scene>.space-sky{position:absolute}
 .scene-coordinate{z-index:2;text-shadow:0 1px 8px #000}
 .eyebrow{color:var(--am-blue);text-shadow:0 0 16px #5be8ff2b}
