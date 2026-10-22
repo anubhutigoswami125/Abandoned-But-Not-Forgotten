@@ -1425,3 +1425,22 @@ body{background:#020313!important}
  background-color:#09071f!important;
  border-color:#7850b7!important;
 }
+
+
+/* PINK + DARK PURPLE NEON GLYPH BACKGROUND */
+:root{--ink:#050214;--ink-2:#10051f;--line:#6e2d96;--rust:#ff4edb;--rust-light:#ff9aef;--cyan:#b16bff;--am-blue:#bd76ff;--am-pink:#ff4edb}
+html,body{background:#050214!important}
+.site-header{background:linear-gradient(100deg,#050214 0%,#10051f 58%,#1b0730 100%)!important;border-bottom-color:#7628a2!important}
+.scene,.intro-scene,.destination-scene,.archive-scene,.reflection-scene{
+ background-color:#050214!important;
+ background-image:radial-gradient(ellipse at 77% 25%,rgba(153,31,202,.35),transparent 40%),radial-gradient(ellipse at 22% 88%,rgba(255,45,200,.13),transparent 38%),linear-gradient(125deg,#030210 0%,#0b041c 48%,#1b0730 78%,#050214 100%)!important;
+}
+.glyph-background{position:absolute;inset:0;z-index:0;display:block;pointer-events:none;mix-blend-mode:screen;opacity:.88}
+.starfield{background-color:transparent!important;opacity:.48}
+.distant-planet{filter:drop-shadow(0 0 38px rgba(192,61,255,.5))}
+.intro-orbit{border-color:#a44dff80}
+.action-button,.tour-launch,.text-button{border-color:#b14dff70}
+.action-button:hover,.tour-launch:hover{box-shadow:0 0 24px #ff4edb30;border-color:#ff4edb}
+.object-panel,.tour-window{background:linear-gradient(145deg,#1b0b31f7,#080416f7)!important;border-color:#bd76ff88!important;box-shadow:0 0 0 1px #ff4edb20,0 25px 100px #000b,0 0 60px #bd4dff20}
+.archive-card,.archive-item,.archive-entry{background:linear-gradient(145deg,#1a0b2c,#080416)!important;border-color:#62357f}
+@media(prefers-reduced-motion:reduce){.glyph-background{opacity:.42}}
