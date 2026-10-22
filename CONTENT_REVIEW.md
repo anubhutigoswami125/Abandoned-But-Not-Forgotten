@@ -39,6 +39,7 @@ All existing per-record source labels and URLs were retained. Additional direct 
 - Added more direct NASA/JPL sources for ALSEP, flags, plaques, retroreflectors, Viking, Sojourner, Apollo LRV, and Mars 3 candidate hardware. The existing source URLs remain.
 - Reworked game feedback to include the correct record, a record-specific field note, source links, and a direct dossier action. Both games retain a visible skip path.
 - Renamed the timeline control to a year index because the current data are record-level years, not a complete list of historical events. The modal now explains that launch, landing, deployment, or multi-year mission years are preserved as written.
+- The browser walkthrough found that the year index used mission names before date wording, so Perseverance appeared under the “Mars 2020” program year instead of its 2021 landing year. It now takes the first year from the record’s launch/deployment wording first, then falls back to the mission label.
 - Fixed opening-card styling that was overridden by later stylesheets, removed the delayed entrance and pulsing action button so Skip is visible and calm from first paint, and added a short reduced-motion-aware panel transition.
 - Fixed dossier close focus so archive-opened records return focus to their landscape marker rather than a hidden archive card.
 
