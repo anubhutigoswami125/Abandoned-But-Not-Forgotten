@@ -1325,3 +1325,70 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
 @media(prefers-reduced-motion:reduce){
  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}
 }
+
+
+/* AFTERMISSION palette: deep navy + violet nebula, preserving scene positioning */
+:root{
+ --ink:#030414;
+ --ink-2:#0a0b2b;
+ --line:#39306f;
+ --rust:#ff4dbb;
+ --rust-light:#e5a1ff;
+ --cyan:#70cfff;
+ --am-blue:#78a4ff;
+ --am-pink:#ff4bd1;
+}
+html,body{background:#030414}
+.site-header{
+ background:linear-gradient(90deg,#030414f7 0%,#080621f2 58%,#17072cf2 100%);
+ border-bottom-color:#5930a7;
+}
+.scene{
+ background-color:#030414;
+ background-image:
+  radial-gradient(ellipse at 78% 28%,#6517a65c 0%,transparent 31%),
+  radial-gradient(ellipse at 64% 70%,#311b9d50 0%,transparent 36%),
+  radial-gradient(ellipse at 18% 92%,#5a0b8650 0%,transparent 35%),
+  linear-gradient(125deg,#020412 0%,#080725 48%,#11062b 76%,#030414 100%);
+}
+.starfield,.space-sky{
+ background-color:transparent;
+ background-image:
+  radial-gradient(ellipse at 78% 26%,#b52fff36 0%,#6d24bd1b 17%,transparent 38%),
+  radial-gradient(ellipse at 61% 60%,#4d37ff30 0%,transparent 33%),
+  radial-gradient(ellipse at 14% 85%,#8d20e52c 0%,transparent 34%),
+  radial-gradient(circle at 12% 19%,#e5e6ff 0 1px,transparent 1.7px),
+  radial-gradient(circle at 38% 12%,#a9b9ff 0 1px,transparent 1.7px),
+  radial-gradient(circle at 77% 17%,#e4c6ff 0 1px,transparent 1.7px),
+  radial-gradient(circle at 89% 43%,#d9e8ff 0 1px,transparent 1.7px),
+  radial-gradient(circle at 60% 31%,#e3d8ff 0 1px,transparent 1.7px),
+  radial-gradient(circle at 22% 65%,#b3a9ff 0 1px,transparent 1.7px),
+  radial-gradient(circle at 48% 78%,#d9e8ff 0 1px,transparent 1.7px),
+  radial-gradient(circle at 94% 81%,#cba7ff 0 1px,transparent 1.7px);
+}
+.intro-scene{
+ background:
+  radial-gradient(ellipse at 78% 30%,#7923c955 0%,#37136e35 24%,transparent 43%),
+  radial-gradient(ellipse at 55% 78%,#3021a54d 0%,transparent 40%),
+  linear-gradient(112deg,#020413 0%,#070622 45%,#10062b 76%,#030414 100%);
+}
+.distant-planet{
+ filter:drop-shadow(0 0 42px #9d3cff45);
+}
+.intro-orbit{border-color:#8a5bff65}
+.destination-scene,.archive-scene,.reflection-scene{
+ background-color:#030414;
+ background-image:
+  radial-gradient(ellipse at 75% 10%,#6422a84a,transparent 44%),
+  radial-gradient(ellipse at 15% 95%,#3520a13d,transparent 40%),
+  linear-gradient(140deg,#030414,#0a0827 60%,#120726);
+}
+.object-panel,.tour-window{
+ background:linear-gradient(145deg,#151039f7,#08071df7);
+ border-color:#9b6dff88;
+ box-shadow:0 0 0 1px #ff4dba20,0 25px 100px #000b,0 0 60px #8b4dff19;
+}
+.archive-card,.archive-item,.archive-entry{
+ background:linear-gradient(145deg,#17123a,#07071d);
+ border-color:#51417f;
+}
