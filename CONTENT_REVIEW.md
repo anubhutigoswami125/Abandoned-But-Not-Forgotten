@@ -44,4 +44,4 @@ All existing per-record source labels and URLs were retained. Additional direct 
 
 ## Experience validation limits
 
-The application was audited by reading the actual catalogue, rendering logic, interaction handlers, and CSS. JavaScript syntax and record/note coverage were checked. Browser click-through was not possible in this environment because the browser policy blocked loading a local file URL and disallowed workarounds for that action. A final hands-on visual pass should still be performed in a normal browser, including narrow mobile widths and reduced-motion mode.
+The published site was opened and all 23 dossiers were read in the browser. Both optional games were played through their feedback and dossier paths; skip paths were also used. That walkthrough exposed a dossier close button layered underneath the site header. The planet scene now rises above the header only while a dossier is open, keeping the close control clickable. The comic prologue, archive, year index, comparison view, narrow mobile widths and reduced-motion mode still need additional visual review.

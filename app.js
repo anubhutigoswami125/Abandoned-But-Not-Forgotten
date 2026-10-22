@@ -327,6 +327,7 @@ function openArtifact(artifact, trigger) {
   selectedArtifact = artifact;
   lastFocusedElement = trigger || document.activeElement;
   currentWorld = artifact.world || currentWorld;
+  scenes.planet.classList.add("dossier-open");
   $("#object-kicker").textContent = (currentWorld === "moon" ? "LUNAR" : "MARTIAN") + " FIELD DOSSIER / " + artifact.kind.toUpperCase();
   $("#object-name").textContent = artifact.name;
   $("#object-mission").textContent = artifact.mission;
@@ -416,6 +417,7 @@ function closeArtifact(restoreFocus = true) {
   const panel = $("#object-panel");
   if (!panel || panel.classList.contains("hidden")) return;
   panel.classList.add("hidden");
+  scenes.planet.classList.remove("dossier-open");
   if (restoreFocus) {
     const marker = selectedArtifact && document.querySelector('[data-artifact-id="' + CSS.escape(selectedArtifact.id) + '"]');
     const focusTarget = lastFocusedElement && lastFocusedElement.getClientRects().length ? lastFocusedElement : marker && marker.getClientRects().length ? marker : $("#open-archive");
