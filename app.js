@@ -772,3 +772,123 @@ window.addEventListener("resize", () => {
   $('#open-timeline').addEventListener('click',()=>{const dated=all.map(a=>({...a,year:Number(((a.launch+' '+a.mission).match(/(?:19|20)\d{2}/)||[])[0])})).filter(a=>a.year).sort((a,b)=>a.year-b.year);open('Mission and Artifact Year Index','YEAR PRECISION PRESERVED · SOURCE-LINKED',`<ol class="lab-timeline">${dated.map(a=>`<li><b>${a.year}</b><span>${esc(a.name)} · ${esc(a.mission)}</span><small>${sourceLinks(a)}</small></li>`).join('')}</ol><p class="evidence-note">This index uses the first year stated in each record’s date wording. A year may refer to launch, landing, deployment or a mission span, as described in the dossier. It is not a complete event timeline.</p>`);});
   $('#open-compare').addEventListener('click',()=>{const options=all.map(a=>`<option value="${esc(a.id)}">${esc(a.name)}</option>`).join('');open('Compare two objects','SIDE-BY-SIDE FIELD NOTES',`<div class="compare-controls"><label>OBJECT A <select id="compare-a">${options}</select></label><label>OBJECT B <select id="compare-b">${options}</select></label><button id="compare-show" class="action-button">COMPARE</button></div><div id="compare-result"></div>`);$('#compare-b').selectedIndex=1;$('#compare-show').addEventListener('click',()=>{const a=all.find(x=>x.id===$('#compare-a').value),b=all.find(x=>x.id===$('#compare-b').value);$('#compare-result').innerHTML=`<div class="compare-grid">${[a,b].map(x=>`<article><h3>${esc(x.name)}</h3><p><b>Destination</b> ${x.world==='moon'?'Moon':'Mars'}</p><p><b>Mission</b> ${esc(x.mission)}</p><p><b>Equipment</b> ${esc(x.kind)}</p><p><b>Purpose</b> ${esc(x.purpose)}</p><p><b>Outcome</b> ${esc(x.status)}</p><p>${sourceLinks(x)}</p></article>`).join('')}</div>`;});});
 })();
+
+
+/* Neon glyph-field background — vanilla JS version for this static GitHub Pages site */
+(() => {
+  const reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const scenes = [...document.querySelectorAll(".scene")];
+  if (!scenes.length) return;
+  scenes.forEach((scene, sceneIndex) => {
+    if (scene.querySelector(".glyph-background")) return;
+    const canvas = document.createElement("canvas");
+    canvas.className = "glyph-background";
+    canvas.setAttribute("aria-hidden", "true");
+    const first = scene.firstElementChild;
+    scene.insertBefore(canvas, first);
+    const ctx = canvas.getContext("2d", { alpha: true });
+    if (!ctx) return;
+    let w = 0, h = 0, dpr = 1, raf = 0, last = 0;
+    let mouse = { x: -1000, y: -1000, active: false, moved: 0 };
+    const waves = [];
+    const cell = 15;
+    let cols = 0, rows = 0;
+    const glyphs = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ<>/{}[]+-=*";
+    const lights = Array.from({length: 9}, (_, i) => ({
+      x: ((i * 0.173 + sceneIndex * 0.091) % 1),
+      y: ((i * 0.317 + 0.11) % 1),
+      r: 70 + (i % 4) * 27,
+      phase: i * 1.7,
+      speed: 0.004 + (i % 3) * 0.001
+    }));
+    const resize = () => {
+      const box = scene.getBoundingClientRect();
+      w = Math.max(1, box.width); h = Math.max(1, box.height);
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = Math.round(w * dpr); canvas.height = Math.round(h * dpr);
+      canvas.style.width = w + "px"; canvas.style.height = h + "px";
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      cols = Math.ceil(w / cell); rows = Math.ceil(h / cell);
+      draw(performance.now());
+    };
+    const draw = (now) => {
+      ctx.clearRect(0, 0, w, h);
+      ctx.font = "10px ui-monospace, SFMono-Regular, Menlo, monospace";
+      ctx.textAlign = "center"; ctx.textBaseline = "middle";
+      const elapsed = Math.min(40, now - (last || now)); last = now;
+      lights.forEach((light, i) => {
+        if (!reduced) {
+          light.x -= light.speed * elapsed / 1000;
+          light.y += light.speed * elapsed / 1500;
+          if (light.x < -0.12) light.x = 1.12;
+          if (light.y > 1.12) light.y = -0.12;
+        }
+        const cx = light.x * w, cy = light.y * h;
+        const radius = light.r * (mouse.active && !reduced ? 1.35 : 1);
+        for (let yy = Math.max(0, Math.floor((cy-radius)/cell)); yy < Math.min(rows, Math.ceil((cy+radius)/cell)); yy++) {
+          for (let xx = Math.max(0, Math.floor((cx-radius)/cell)); xx < Math.min(cols, Math.ceil((cx+radius)/cell)); xx++) {
+            const px = xx * cell + cell/2, py = yy * cell + cell/2;
+            let dist = Math.hypot(px-cx, py-cy);
+            let power = Math.max(0, 1 - dist/radius);
+            if (mouse.active && !reduced) {
+              const md = Math.hypot(px-mouse.x, py-mouse.y);
+              power = Math.max(power, Math.max(0, 1-md/115) * 0.9);
+            }
+            if (power < 0.13) continue;
+            const char = glyphs[(xx*13 + yy*7 + i*19 + Math.floor(now/1100)) % glyphs.length];
+            ctx.globalAlpha = Math.min(.8, power * (.32 + .42 * (0.5 + 0.5*Math.sin(now*.001 + xx*.4 + yy*.2))));
+            ctx.fillStyle = i % 3 === 0 ? "#ff56dc" : (i % 3 === 1 ? "#b56cff" : "#8e80ff");
+            if (power > .48) { ctx.shadowBlur = 10; ctx.shadowColor = ctx.fillStyle; }
+            else ctx.shadowBlur = 0;
+            ctx.fillText(char, px, py);
+          }
+        }
+      });
+      ctx.shadowBlur = 0;
+      waves.forEach((wave, idx) => {
+        const age = now - wave.start;
+        const p = Math.min(1, age / 1150);
+        const radius = 330 * (1 - Math.pow(1-p, 2));
+        ctx.beginPath(); ctx.arc(wave.x, wave.y, radius, 0, Math.PI*2);
+        ctx.lineWidth = 2.1 * (1-p) + .3;
+        ctx.strokeStyle = wave.color; ctx.globalAlpha = Math.max(0, (1-age/4000) * (idx ? .27 : .55));
+        ctx.shadowBlur = 14; ctx.shadowColor = wave.color; ctx.stroke(); ctx.shadowBlur = 0;
+      });
+      ctx.globalAlpha = 1;
+      for (let i = waves.length - 1; i >= 0; i--) if (now - waves[i].start > 4000) waves.splice(i,1);
+      if (!reduced && document.visibilityState === "visible" && scene.isConnected) raf = requestAnimationFrame(draw);
+    };
+    const wake = e => {
+      if (reduced) return;
+      const rect = canvas.getBoundingClientRect();
+      mouse.x = e.clientX - rect.left; mouse.y = e.clientY - rect.top;
+      mouse.active = true; mouse.moved = performance.now();
+      if (!raf) raf = requestAnimationFrame(draw);
+    };
+    const sleep = () => { mouse.active = false; };
+    const click = e => {
+      if (reduced) return;
+      const rect = canvas.getBoundingClientRect(), x = e.clientX-rect.left, y = e.clientY-rect.top;
+      const now = performance.now();
+      waves.push({x,y,start:now,color:"#ff55dc"},{x,y,start:now+300,color:"#b56cff"});
+      if (!raf) raf = requestAnimationFrame(draw);
+    };
+    scene.addEventListener("pointermove", wake, {passive:true});
+    scene.addEventListener("pointerleave", sleep, {passive:true});
+    scene.addEventListener("click", click, {passive:true});
+    document.addEventListener("visibilitychange", () => {
+      if (document.visibilityState === "hidden") { cancelAnimationFrame(raf); raf = 0; }
+      else if (!reduced && !raf) raf = requestAnimationFrame(draw);
+    });
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver(entries => {
+        if (entries[0].isIntersecting && !reduced && !raf) raf = requestAnimationFrame(draw);
+        else if (!entries[0].isIntersecting) { cancelAnimationFrame(raf); raf = 0; }
+      });
+      observer.observe(scene);
+    }
+    window.addEventListener("resize", resize, {passive:true});
+    resize();
+    if (!reduced && !raf) raf = requestAnimationFrame(draw);
+  });
+})();
